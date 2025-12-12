@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Juan Echeverri — Portafolio</title>
+  <meta name="description" content="Portafolio de Juan E — Desarrollo Web & Móvil, backend, OCR, maps, APIs." />
+  <meta name="author" content="Juan Esteban Echeverri Rendon" />
+  <style>
+  :root{
+    --bg: #0f1724;
+    --card: linear-gradient(135deg,#0b1220 0%, #0f1b2a 100%);
+    --accent: #6ee7b7;
+    --accent-2: #60a5fa;
+    --muted: #94a3b8;
+    --glass: rgba(255,255,255,0.04);
+    --glass-2: rgba(255,255,255,0.03);
+    --white: #e6eef8;
+    --radius: 14px;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+    --ui: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:var(--bg);color:var(--white);font-family:var(--ui);}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  main{max-width:1100px;margin:36px auto;padding:28px}
+  .container{display:grid;grid-template-columns:1fr;gap:22px}
+
+  header.site{
+    display:flex;align-items:center;gap:18px;justify-content:space-between;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    border-radius:12px;padding:14px 18px;backdrop-filter: blur(6px);
+    box-shadow: 0 6px 30px rgba(2,6,23,0.6);
+  }
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo {
+    width:56px;height:56px;border-radius:12px;
+    background: linear-gradient(135deg,var(--accent),var(--accent-2));
+    display:flex;align-items:center;justify-content:center;font-weight:700;color:#032;
+    transform: rotate(-10deg) scale(1.02);
+    box-shadow: 0 8px 30px rgba(95, 140, 255, 0.08), inset 0 -6px 12px rgba(255,255,255,0.06);
+  }
+  .brand h1{font-size:18px;margin:0}
+  .brand p{margin:0;font-size:12px;color:var(--muted)}
+  nav{display:flex;gap:10px;align-items:center}
+  .nav-btn{
+    background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px 12px;border-radius:10px;color:var(--muted);
+    font-size:13px;cursor:pointer;transition:all .22s;
+  }
+  .nav-btn:hover{transform:translateY(-3px);border-color:rgba(255,255,255,0.07);color:var(--white)}
+
+  .hero{
+    display:grid;grid-template-columns: 1fr 420px; gap:22px; align-items:center;
+    background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+    border-radius:14px;padding:28px;border:1px solid rgba(255,255,255,0.03);
+  }
+  .hero-left h2{font-size:26px;margin:0 0 8px}
+  .tagline{color:var(--muted);margin:0 0 16px}
+  .cta-row{display:flex;gap:12px;align-items:center}
+  .btn-primary{
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    color:#032;padding:10px 16px;border-radius:12px;border:0;font-weight:700;cursor:pointer;
+    box-shadow: 0 8px 30px rgba(96,165,250,0.08);
+  }
+  .btn-ghost{
+    background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:12px;color:var(--white);
+  }
+
+  .card-3d{
+    perspective:1000px;
+    width:100%;height:100%;min-height:240px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .profile-card{
+    width:100%;height:100%;border-radius:12px;padding:18px;background:var(--card);box-shadow: 0 20px 50px rgba(2,6,23,.6);
+    transform-style:preserve-3d;transition:transform .18s ease-out;
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .profile-top{display:flex;gap:12px;align-items:center}
+  .avatar{
+    width:72px;height:72px;border-radius:12px;background:linear-gradient(180deg,#112233,#203344);
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;color:var(--accent);
+    border:1px solid rgba(255,255,255,0.03)
+  }
+  .small-meta{font-size:13px;color:var(--muted)}
+  .pills{display:flex;gap:8px;flex-wrap:wrap}
+  .pill{background:var(--glass);padding:6px 10px;border-radius:999px;font-size:13px;color:var(--muted);border:1px solid rgba(255,255,255,0.02)}
+  /* skills bars */
+  .skill{display:flex;flex-direction:column;gap:6px}
+  .skill .meta{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+  .bar{height:10px;border-radius:999px;background:var(--glass);overflow:hidden}
+  .bar > i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:40%}
+ 
+  section.panel{
+    background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);
+    padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);
+  }
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .proj-card{
+    border-radius:12px;padding:14px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+    border:1px solid rgba(255,255,255,0.03);transition:transform .22s, box-shadow .22s;
+    position:relative;overflow:hidden;
+  }
+  .proj-card:hover{transform:translateY(-8px);box-shadow: 0 30px 60px rgba(2,6,23,0.6)}
+  .proj-title{font-weight:700;margin:0 0 6px}
+  .proj-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .badge{background:var(--glass-2);padding:6px 8px;border-radius:8px;font-size:12px;color:var(--muted);border:1px solid rgba(255,255,255,0.02)}
+  .proj-thumb{height:120px;border-radius:8px;background:linear-gradient(90deg, rgba(96,165,250,0.08), rgba(110,231,183,0.06));display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700}
+  .timeline{display:flex;flex-direction:column;gap:12px}
+  .item{display:flex;gap:12px;align-items:flex-start}
+  .dot{width:12px;height:12px;border-radius:50%;background:var(--accent);flex:0 0 12px;margin-top:6px;box-shadow:0 6px 18px rgba(110,231,183,0.08)}
+  .item .body{background:rgba(255,255,255,0.02);padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.02)}
+ 
+  footer{display:flex;justify-content:space-between;align-items:center;padding:14px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);border:1px solid rgba(255,255,255,0.03)}
+  .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.7);display:none;align-items:center;justify-content:center;z-index:1200}
+  .modal{width:900px;max-width:94%;background:var(--card);border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.03)}
+  .modal .close{position:absolute;right:18px;top:18px;background:transparent;border:0;color:var(--muted);cursor:pointer;font-size:18px}
+  pre{background:#051124;padding:12px;border-radius:8px;overflow:auto;font-family:var(--mono);font-size:13px;color:#cfeef5}
+  @media (max-width:980px){
+    .hero{grid-template-columns:1fr;align-items:start}
+    .projects{grid-template-columns:1fr}
+    .grid-3{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:560px){
+    main{padding:14px}
+    .grid-3{grid-template-columns:1fr}
+    .brand h1{font-size:16px}
+  }
+
+  .reveal{opacity:0;transform:translateY(14px);transition:all .6s cubic-bezier(.2,.9,.3,1)}
+  .reveal.visible{opacity:1;transform:none}
+  .typing {display:inline-block; border-right:2px solid rgba(255,255,255,0.12); animation: blink 1s steps(2,end) infinite;}
+  @keyframes blink{50%{border-color:transparent}}
+  .floaty {animation: floaty 6s ease-in-out infinite}
+  @keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+
+  .wave{width:100%;height:36px;display:block;margin-top:6px;opacity:0.06}
+  </style>
+</head>
+<body>
+  <main>
+    <header class="site">
+      <div class="brand">
+        <div class="logo">TU</div>
+        <div>
+          <h1>Juan Esteban Echeverri Rendon</h1>
+          <p>Desarrollador | Tecnólogo en Análisis y Desarrollo de Software</p>
+        </div>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <button class="nav-btn" data-scroll="#projects">Proyectos</button>
+        <button class="nav-btn" data-scroll="#skills">Habilidades</button>
+        <button class="nav-btn" data-scroll="#about">Formación</button>
+        <button class="nav-btn" data-scroll="#contact">Contacto</button>
+      </nav>
+    </header>
+
+    <section class="hero reveal" aria-labelledby="hero-heading">
+      <div class="hero-left">
+        <h2 id="hero-heading">Creando soluciones reales con código limpio</h2>
+        <p class="tagline">Desarrollo web y móvil • APIs REST • OCR • Mapas en tiempo real</p>
+
+        <div class="cta-row">
+          <button class="btn-primary" id="download-cv">Descargar CV</button>
+          <button class="btn-ghost" id="contact-me">Contactar</button>
+        </div>
+
+        <div style="margin-top:16px">
+          <span class="typing" id="type-line">Desarrollando backend... </span>
+        </div>
+
+        <svg class="wave" viewBox="0 0 1200 28" preserveAspectRatio="none">
+          <path d="M0,8 C150,28 350,0 600,8 C850,16 1050,0 1200,8 L1200,28 L0,28 Z" fill="#fff"/>
+        </svg>
+
+        <div style="margin-top:12px" class="pills">
+          <div class="pill">Python</div>
+          <div class="pill">Flask</div>
+          <div class="pill">Java</div>
+          <div class="pill">Spring Boot</div>
+          <div class="pill">Flutter</div>
+        </div>
+      </div>
+
+      <div class="card-3d" id="card3d" aria-hidden="true">
+        <div class="profile-card" id="profileCard">
+          <div class="profile-top">
+             <div class="avatar">
+    <img src="img\WhatsApp Image 2025-12-12 at 11.40.01.jpeg" alt="Juan Esteban" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
+  </div>
+            <div style="flex:1">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <div>
+                  <strong>Juan Esteban Echeverri Rendon.</strong>
+                  <div class="small-meta">Tecnólogo en Desarrollo de Software</div>
+                </div>
+                <div style="text-align:right">
+                  <div class="small-meta">Colombia</div>
+                  <div class="small-meta">Prácticas | Junior</div>
+                </div>
+              </div>
+              <div style="margin-top:8px" class="small-meta">Especialidad: Backend, Mobile, OCR, Mapas</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:center;justify-content:space-between">
+            <div style="flex:1">
+              <div class="skill">
+                <div class="meta"><span>Python (Flask)</span><span>75%</span></div>
+                <div class="bar"><i style="width:75%"></i></div>
+              </div>
+              <div class="skill" style="margin-top:8px">
+                <div class="meta"><span>Flutter</span><span>68%</span></div>
+                <div class="bar"><i style="width:68%"></i></div>
+              </div>
+            </div>
+            <div style="width:110px;text-align:center">
+              <div style="font-size:12px;color:var(--muted)">Disponible</div>
+              <div style="font-weight:700;margin-top:6px">Prácticas</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:auto">
+            <div class="small-meta">GitHub: <a href="https://github.com/TU_GITHUB" target="_blank" style="color:var(--accent)">@TU_GITHUB</a></div>
+            <div style="display:flex;gap:8px">
+              <button class="pill" id="openProjects">Ver proyectos</button>
+              <button class="pill" id="openContact">Contacto</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="panel reveal">
+      <h3 style="margin-top:0">Proyectos destacados</h3>
+      <p class="small-meta">Proyectos reales, código abierto y demos. Click en "Abrir" para ver detalles y fragmentos de código.</p>
+
+      <div class="projects" aria-live="polite">
+        <article class="proj-card" data-proj="gps">
+          <div class="proj-thumb">Rastreo GPS (Realtime)</div>
+          <h4 class="proj-title">Sistema de rastreo GPS en tiempo real</h4>
+          <p class="small-meta">Backend en Flask, API REST, WebSockets, frontend con Leaflet</p>
+          <div class="proj-badges">
+            <span class="badge">Python</span><span class="badge">Flask</span><span class="badge">Leaflet</span><span class="badge">SQLite</span>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <button class="nav-btn open-proj" data-id="gps">Abrir</button>
+            <a class="nav-btn" href="https://github.com/TU_GITHUB/gps-tracker" target="_blank">Código</a>
+          </div>
+        </article>
+
+        <article class="proj-card" data-proj="ocr">
+          <div class="proj-thumb">OCR Facturas</div>
+          <h4 class="proj-title">Lector de facturas con OCR</h4>
+          <p class="small-meta">PaddleOCR/Tesseract, extracción de montos y productos</p>
+          <div class="proj-badges">
+            <span class="badge">Python</span><span class="badge">OCR</span><span class="badge">Flask</span>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <button class="nav-btn open-proj" data-id="ocr">Abrir</button>
+            <a class="nav-btn" href="https://github.com/TU_GITHUB/ocr-invoices" target="_blank">Código</a>
+          </div>
+        </article>
+
+        <article class="proj-card" data-proj="app">
+          <div class="proj-thumb">App Flutter</div>
+          <h4 class="proj-title">App móvil — Login y mapa</h4>
+          <p class="small-meta">Flutter, autenticación por ID, integración con backend</p>
+          <div class="proj-badges">
+            <span class="badge">Flutter</span><span class="badge">Dart</span><span class="badge">Android</span>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <button class="nav-btn open-proj" data-id="app">Abrir</button>
+            <a class="nav-btn" href="https://github.com/TU_GITHUB/flutter-login-map" target="_blank">Código</a>
+          </div>
+        </article>
+
+        <article class="proj-card" data-proj="crud">
+          <div class="proj-thumb">Spring Boot</div>
+          <h4 class="proj-title">Platforma de gestión (CRUD)</h4>
+          <p class="small-meta">Spring Boot, MySQL, Thymeleaf, diseño responsivo</p>
+          <div class="proj-badges">
+            <span class="badge">Java</span><span class="badge">Spring Boot</span><span class="badge">MySQL</span>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <button class="nav-btn open-proj" data-id="crud">Abrir</button>
+            <a class="nav-btn" href="https://github.com/TU_GITHUB/spring-students" target="_blank">Código</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" class="panel reveal">
+      <div style="display:flex;gap:18px;align-items:flex-start">
+        <div style="flex:1">
+          <h3 style="margin-top:0">Habilidades</h3>
+          <div class="grid-3" role="list">
+            <div role="listitem" class="panel" style="padding:12px">
+              <h4 style="margin:4px 0">Backend</h4>
+              <p class="small-meta">APIs REST, WebSockets, autenticación por tokens, manejo de bases de datos</p>
+              <div style="margin-top:8px">
+                <div class="skill"><div class="meta"><span>Python / Flask</span><span>75%</span></div><div class="bar"><i style="width:75%"></i></div></div>
+                <div class="skill" style="margin-top:8px"><div class="meta"><span>Java / Spring Boot</span><span>60%</span></div><div class="bar"><i style="width:60%"></i></div></div>
+              </div>
+            </div>
+
+            <div role="listitem" class="panel" style="padding:12px">
+              <h4 style="margin:4px 0">Front / Mobile</h4>
+              <p class="small-meta">Flutter, HTML, CSS, JavaScript básico y componentes responsivos</p>
+              <div style="margin-top:8px"><div class="skill"><div class="meta"><span>Flutter</span><span>68%</span></div><div class="bar"><i style="width:68%"></i></div></div></div>
+            </div>
+
+            <div role="listitem" class="panel" style="padding:12px">
+              <h4 style="margin:4px 0">Otros</h4>
+              <p class="small-meta">OCR, Leaflet, Git, despliegue básico</p>
+              <div style="margin-top:8px"><div class="skill"><div class="meta"><span>OCR</span><span>50%</span></div><div class="bar"><i style="width:50%"></i></div></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="width:320px">
+          <h3 style="margin-top:0">Experiencia y educación</h3>
+          <div class="timeline">
+            <div class="item">
+              <div class="dot" aria-hidden></div>
+              <div class="body">
+                <strong>Herbasana — Asistente en cultivo</strong>
+                <div class="small-meta">Siembra, poda, riego, control de plagas</div>
+                <div class="small-meta">Fechas: ______</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="dot" aria-hidden></div>
+              <div class="body">
+                <strong>Quesera — Operario de producción</strong>
+                <div class="small-meta">Manejo de molino, rotulado, empaque, control de calidad</div>
+                <div class="small-meta">Fechas: ______</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="dot" aria-hidden></div>
+              <div class="body">
+                <strong>Tecnólogo en Desarrollo de Software</strong>
+                <div class="small-meta">Institución: ______ — Año: __</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="panel reveal">
+      <h3 style="margin-top:0">Formación</h3>
+      <p class="small-meta">Bachiller, Técnico en Agroindustria Alimentaria, Tecnólogo en Análisis y Desarrollo de Software (en curso).</p>
+
+      <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
+        <div class="pill">Análisis y Desarrollo de Software</div>
+        <div class="pill">Técnico: Agroindustria Alimentaria</div>
+        <div class="pill">Cursos: Python, Flutter, Spring Boot</div>
+      </div>
+    </section>
+
+    <section id="contact" class="panel reveal">
+      <h3 style="margin-top:0">Contacto</h3>
+      <div style="display:flex;gap:18px;align-items:flex-start">
+        <div style="flex:1">
+          <p class="small-meta">Correo: <a href="mailto:TU_EMAIL" style="color:var(--accent)">TU_EMAIL</a></p>
+          <p class="small-meta">GitHub: <a href="https://github.com/TU_GITHUB" target="_blank" style="color:var(--accent)">TU_GITHUB</a></p>
+          <p class="small-meta">LinkedIn: <a href="https://www.linkedin.com/in/TU_LINKEDIN" target="_blank" style="color:var(--accent)">TU_LINKEDIN</a></p>
+          <div style="margin-top:12px">
+            <a class="btn-primary" href="mailto:TU_EMAIL?subject=Contacto%20desde%20portafolio">Enviar correo</a>
+          </div>
+        </div>
+        <div style="width:360px">
+          <form id="contactForm">
+            <label class="small-meta" for="name">Nombre</label>
+            <input id="name" name="name" required style="width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);margin:6px 0;background:transparent;color:var(--white)" />
+            <label class="small-meta" for="message">Mensaje</label>
+            <textarea id="message" name="message" rows="4" required style="width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);margin:6px 0;background:transparent;color:var(--white)"></textarea>
+            <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+              <button class="btn-ghost" type="reset">Limpiar</button>
+              <button class="btn-primary" type="submit">Enviar</button>
+            </div>
+            <div id="contactResult" style="margin-top:8px;color:var(--accent);font-size:14px;display:none"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="small-meta">© <strong>TU_NOMBRE</strong> — Tecnólogo en Desarrollo de Software</div>
+      <div style="display:flex;gap:8px">
+        <a class="nav-btn" href="https://github.com/TU_GITHUB" target="_blank">GitHub</a>
+        <a class="nav-btn" href="https://www.linkedin.com/in/TU_LINKEDIN" target="_blank">LinkedIn</a>
+      </div>
+    </footer>
+  </main>
+
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="close" id="closeModal" aria-label="Cerrar">✕</button>
+      <h3 id="modalTitle">Proyecto</h3>
+      <p id="modalDesc" class="small-meta"></p>
+      <div id="modalContent" style="margin-top:12px"></div>
+    </div>
+  </div>
+
+  <script>
+  const $ = (s, el=document) => el.querySelector(s);
+  const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
+
+  $$('.nav-btn').forEach(b=>{
+    b.addEventListener('click', e=>{
+      const target = b.getAttribute('data-scroll');
+      if(target){
+        document.querySelector(target).scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    });
+  });
+
+  const phrases = [
+    'Desarrollo backend.','Integración de APIs.','Aplicaciones móviles.','OCR y procesamiento.','Mapas en tiempo real.'
+  ];
+  let tIndex=0;const typeEl = $('#type-line');
+  let typing=false;
+  function loopType(){
+    const p = phrases[tIndex%phrases.length];
+    let i=0;typeEl.textContent='';
+    typing=true;
+    const it = setInterval(()=>{ typeEl.textContent = p.slice(0,i+1); i++; if(i>=p.length){ clearInterval(it); setTimeout(()=>{typing=false;tIndex++; loopType()},900)} },40);
+  }
+  loopType();
+
+  const reveals = $$('.reveal');
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(ent=>{
+      if(ent.isIntersecting) ent.target.classList.add('visible');
+    });
+  }, {threshold:0.12});
+  reveals.forEach(r=>io.observe(r));
+
+  const cardWrap = $('#card3d');
+  const card = $('#profileCard');
+  if(cardWrap){
+    cardWrap.addEventListener('mousemove', (ev)=>{
+      const rect = cardWrap.getBoundingClientRect();
+      const x = (ev.clientX - rect.left) / rect.width;
+      const y = (ev.clientY - rect.top) / rect.height;
+      const rx = (y - 0.5) * -10;
+      const ry = (x - 0.5) * 12;
+      card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateZ(6px)`;
+    });
+    cardWrap.addEventListener('mouseleave', ()=> card.style.transform = 'none');
+  }
+
+  const modal = $('#modalBackdrop');
+  const modalTitle = $('#modalTitle');
+  const modalDesc = $('#modalDesc');
+  const modalContent = $('#modalContent');
+
+  const projects = {
+    gps: {
+      title: 'Sistema de rastreo GPS en tiempo real',
+      desc: 'Backend en Flask con WebSockets + frontend con Leaflet. Arquitectura REST + WS para enviar coordenadas y actualizar el mapa en tiempo real.',
+      code:
+`# server.py (fragmento)
+from flask import Flask, request, jsonify
+from flask_socketio import SocketIO, emit
+app = Flask(_name_)
+socketio = SocketIO(app)
+
+@socketio.on('update_location')
+def on_location(data):
+    # data: {id, lat, lng}
+    emit('location_update', data, broadcast=True)
+
+if _name=='main_':
+    socketio.run(app, host='0.0.0.0', port=5000)
+`
+    },
+    ocr: {
+      title: 'Lector de facturas con OCR',
+      desc: 'Pipeline para extraer texto de imágenes/PDF, normalizar y convertir montos escritos en palabras a números. Integración Flask + PaddleOCR o Tesseract.',
+      code:
+`# extract.py (fragmento)
+from paddleocr import PaddleOCR
+ocr = PaddleOCR(use_angle_cls=True, lang='es')
+result = ocr.ocr('factura.jpg', cls=True)
+# Procesar resultado y extraer montos y productos
+`
+    },
+    app: {
+      title: 'App móvil — Login y mapa',
+      desc: 'App Flutter con pantalla de login por ID y pantalla con mapa que consume API REST para mostrar ubicaciones.',
+      code:
+`// login_screen.dart (fragmento)
+ElevatedButton(
+  onPressed: () async {
+    final id = idController.text;
+    final res = await http.post(Uri.parse('$API/auth'), body: {'id':id});
+    if(res.statusCode==200) Navigator.pushNamed(context, '/map');
+  },
+  child: Text('Entrar'),
+)
+`
+    },
+    crud: {
+      title: 'Plataforma CRUD — Spring Boot',
+      desc: 'Aplicación Java Spring Boot con MVC, repositorios JPA y Thymeleaf para gestión de estudiantes.',
+      code:
+`// StudentController.java (fragmento)
+@GetMapping("/students")
+public String listStudents(Model model) {
+    model.addAttribute("students", studentService.findAll());
+    return "students";
+}
+`
+    }
+  };
+
+  function openProj(id){
+    const p = projects[id];
+    modalTitle.textContent = p.title;
+    modalDesc.textContent = p.desc;
+    modalContent.innerHTML = '<pre>'+escapeHtml(p.code)+'</pre>';
+    modal.style.display = 'flex';
+    setTimeout(()=> modal.querySelector('.modal').focus(),60);
+  }
+
+  $$('.open-proj').forEach(b=>{
+    b.addEventListener('click', ()=> openProj(b.getAttribute('data-id')));
+  });
+  $('#openProjects')?.addEventListener('click', ()=> document.querySelector('#projects').scrollIntoView({behavior:'smooth'}));
+  $('#openContact')?.addEventListener('click', ()=> document.querySelector('#contact').scrollIntoView({behavior:'smooth'}));
+  $('#closeModal').addEventListener('click', ()=> modal.style.display='none');
+  modal.addEventListener('click',(e)=>{ if(e.target===modal) modal.style.display='none' });
+
+  // Escape HTML helper
+  function escapeHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
+
+  // Contact form: just show message and prepare mailto (no backend)
+  $('#contactForm').addEventListener('submit', function(ev){
+    ev.preventDefault();
+    const name = $('#name').value.trim();
+    const msg = $('#message').value.trim();
+    if(!name || !msg) return;
+    const subject = encodeURIComponent('Contacto desde portafolio: '+name);
+    const body = encodeURIComponent(msg + "\\n\\n--\\nNombre: "+name);
+    const mail = 'mailto:TU_EMAIL?subject='+subject+'&body='+body;
+    $('#contactResult').style.display='block';
+    $('#contactResult').textContent='Preparando correo...';
+    setTimeout(()=>{ window.location.href = mail; $('#contactResult').textContent='Abriendo cliente de correo...'; },600);
+  });
+
+  // CV download (generate simple text PDF via data URI - fallback to CV link)
+  $('#download-cv').addEventListener('click', ()=>{
+    // If you host a cv file, link it. For now provide a downloadable text-based CV.
+    const cvText = `T U N O M B R E - CV\\n\\nPerfil: Tecnólogo...\\nProyectos: ...\\nContact: TU_EMAIL`;
+    const blob = new Blob([cvText], {type:'text/plain'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url; a.download = 'TU_NOMBRE_CV.txt'; a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  // Small keyboard accessibility: Esc closes modals
+  window.addEventListener('keydown', e=>{ if(e.key==='Escape') modal.style.display='none'; });
+
+  // Small enhancements: animate skill bars once visible
+  const skillBars = $$('.bar i');
+  const skillObserver = new IntersectionObserver(entries=>{
+    entries.forEach(ent=>{
+      if(ent.isIntersecting){
+        ent.target.style.transformOrigin='left center';
+        ent.target.style.transition='width 900ms cubic-bezier(.2,.9,.3,1)';
+        // width already set inline; re-assign to trigger transition
+        const w = getComputedStyle(ent.target).width;
+        ent.target.style.width = w;
+      }
+    });
+  }, {threshold:0.2});
+  skillBars.forEach(b=>skillObserver.observe(b));
+
+  // Small: prevent focus outlines from mouse users but keep for keyboard
+  document.body.addEventListener('mousedown', ()=> document.body.classList.add('using-mouse'));
+  document.body.addEventListener('keydown', ()=> document.body.classList.remove('using-mouse'));
+  </script>
+</body>
+</html>
