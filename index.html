@@ -21,14 +21,14 @@
     --ui: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   }
   *{box-sizing:border-box}
-  html,body{height:100%;margin:0;background:var(--bg);color:var(--white);font-family:var(--ui);}
+  html,body{height:100%;max-width: 100%;margin:0;background:var(--bg);color:var(--white);font-family:var(--ui);}
   a{color:inherit;text-decoration:none}
   img{max-width:100%;display:block}
   main{max-width:1100px;margin:36px auto;padding:28px}
   .container{display:grid;grid-template-columns:1fr;gap:22px}
 
   header.site{
-    display:flex;align-items:center;gap:18px;justify-content:space-between;
+    display:flex;flex-wrap:wrap;align-items:center;gap:18px;justify-content:space-between;
     background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
     border-radius:12px;padding:14px 18px;backdrop-filter: blur(6px);
     box-shadow: 0 6px 30px rgba(2,6,23,0.6);
@@ -43,21 +43,54 @@
   }
   .brand h1{font-size:18px;margin:0}
   .brand p{margin:0;font-size:12px;color:var(--muted)}
-  nav{display:flex;gap:10px;align-items:center}
+  nav{display:flex;gap:10px;align-items:center;flex-wrap: wrap;justify-content: flex-end;}
   .nav-btn{
     background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px 12px;border-radius:10px;color:var(--muted);
     font-size:13px;cursor:pointer;transition:all .22s;
   }
+  .hero-left{
+  width:100%;
+  max-width:100%;
+}
+.hero,
+.hero-left,
+.card-3d,
+.profile-card{
+  min-width: 0;
+}
   .nav-btn:hover{transform:translateY(-3px);border-color:rgba(255,255,255,0.07);color:var(--white)}
 
   .hero{
-    display:grid;grid-template-columns: 1fr 420px; gap:22px; align-items:center;
+    display:grid;overflow:visible;grid-template-columns: 1fr 420px; gap:22px; align-items:center;
     background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
-    border-radius:14px;padding:28px;border:1px solid rgba(255,255,255,0.03);
+    border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,0.03);
   }
-  .hero-left h2{font-size:26px;margin:0 0 8px}
-  .tagline{color:var(--muted);margin:0 0 16px}
-  .cta-row{display:flex;gap:12px;align-items:center}
+
+  .hero-left h2{
+  font-size:26px;
+  line-height:1.3;
+  margin:0 0 10px;
+  max-width:100%;
+  white-space:normal;
+  overflow:hidden;
+
+  word-break:break-word;
+  overflow-wrap:anywhere;
+  hyphens:auto;
+}
+  .tagline{
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.5;
+  width:100%;
+  max-width:100%;
+  margin:0 0 16px;
+
+  white-space:normal;
+  word-break:break-word;
+  overflow-wrap:anywhere;
+  hyphens:auto;
+}
   .btn-primary{
     background:linear-gradient(90deg,var(--accent),var(--accent-2));
     color:#032;padding:10px 16px;border-radius:12px;border:0;font-weight:700;cursor:pointer;
@@ -85,8 +118,7 @@
   }
   .small-meta{font-size:13px;color:var(--muted)}
   .pills{display:flex;gap:8px;flex-wrap:wrap}
-  .pill{background:var(--glass);padding:6px 10px;border-radius:999px;font-size:13px;color:var(--muted);border:1px solid rgba(255,255,255,0.02)}
-  /* skills bars */
+  .pill{background:var(--glass);max-width:100%;padding:6px 10px;border-radius:999px;font-size:13px;color:var(--muted);border:1px solid rgba(255,255,255,0.02)}
   .skill{display:flex;flex-direction:column;gap:6px}
   .skill .meta{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
   .bar{height:10px;border-radius:999px;background:var(--glass);overflow:hidden}
@@ -124,10 +156,137 @@
     .grid-3{grid-template-columns:repeat(2,1fr)}
   }
   @media (max-width:560px){
-    main{padding:14px}
-    .grid-3{grid-template-columns:1fr}
-    .brand h1{font-size:16px}
+  main{
+    padding:14px;
   }
+
+    .pills{
+    justify-content:center;
+    gap:6px;
+  }
+
+  .pill{
+    font-size:12px;
+    padding:5px 8px;
+    white-space:normal;
+    text-align: center;
+  }
+
+  #contact > div{
+    flex-direction:column !important;
+  }
+
+  #contact > div > div{
+    width:100% !important;
+  }
+
+  #contactForm input,
+  #contactForm textarea{
+    width:100% !important;
+    box-sizing:border-box;
+  }
+
+  #contactForm > div{
+    flex-wrap:wrap;
+  }
+
+  .hero{
+  padding:18px;
+  overflow: visible;
+  min-width: 0;
+}
+
+.hero-left h2{
+  font-size:22px;
+  text-align:center;
+}
+
+.tagline{
+  font-size:14px;
+  text-align:center;
+}
+
+  .cta-row{
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  
+  .grid-3{
+    grid-template-columns:1fr;
+  }
+
+  .brand h1{
+    font-size:12px;
+  }
+
+  header.site{
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  nav{
+    justify-content: center;
+    width:100%;
+  }
+
+  .nav-btn{
+    flex:1;
+    text-align:center;
+  }
+
+  .brand{
+    justify-content:center;
+    text-align:center;
+  }
+
+    .card-3d{
+    height:auto;
+    min-height:auto;
+    width:100%;
+    max-width:100%;
+  }
+
+  .profile-card{
+    height:auto;
+    min-height:auto;
+    width:100%;
+    max-width:100%;
+  }
+
+    .profile-top{
+    align-items:flex-start;
+  }
+
+  .profile-top > div > div{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:4px;
+  }
+
+  .profile-top > div > div > div:last-child{
+    text-align:left;
+  }
+
+    .profile-card > div:last-child{
+    flex-direction:column;
+    align-items:stretch;
+    gap:8px;
+  }
+
+  .profile-card > div:last-child .pill{
+    text-align:center;
+  }
+
+  footer{
+    flex-direction: column;
+    gap:12px;
+    text-align:center;
+  }
+
+  footer > div{
+    justify-content:center;
+  }
+}
 
   .reveal{opacity:0;transform:translateY(14px);transition:all .6s cubic-bezier(.2,.9,.3,1)}
   .reveal.visible{opacity:1;transform:none}
@@ -158,7 +317,7 @@
       </nav>
     </header>
 
-    <section class="hero reveal" aria-labelledby="hero-heading">
+    <section class="hero" aria-labelledby="hero-heading">
       <div class="hero-left">
         <h2 id="hero-heading">Creando soluciones reales con código limpio</h2>
         <p class="tagline">Desarrollo web y móvil • APIs REST • OCR • Mapas en tiempo real</p>
@@ -540,10 +699,8 @@ public String listStudents(Model model) {
   $('#closeModal').addEventListener('click', ()=> modal.style.display='none');
   modal.addEventListener('click',(e)=>{ if(e.target===modal) modal.style.display='none' });
 
-  // Escape HTML helper
   function escapeHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
 
-  // Contact form: just show message and prepare mailto (no backend)
   $('#contactForm').addEventListener('submit', function(ev){
     ev.preventDefault();
     const name = $('#name').value.trim();
@@ -557,9 +714,7 @@ public String listStudents(Model model) {
     setTimeout(()=>{ window.location.href = mail; $('#contactResult').textContent='Abriendo cliente de correo...'; },600);
   });
 
-  // CV download (generate simple text PDF via data URI - fallback to CV link)
   $('#download-cv').addEventListener('click', ()=>{
-    // If you host a cv file, link it. For now provide a downloadable text-based CV.
     const cvText = `T U N O M B R E - CV\\n\\nPerfil: Tecnólogo...\\nProyectos: ...\\nContact: TU_EMAIL`;
     const blob = new Blob([cvText], {type:'text/plain'});
     const url = URL.createObjectURL(blob);
@@ -567,17 +722,14 @@ public String listStudents(Model model) {
     URL.revokeObjectURL(url);
   });
 
-  // Small keyboard accessibility: Esc closes modals
   window.addEventListener('keydown', e=>{ if(e.key==='Escape') modal.style.display='none'; });
 
-  // Small enhancements: animate skill bars once visible
   const skillBars = $$('.bar i');
   const skillObserver = new IntersectionObserver(entries=>{
     entries.forEach(ent=>{
       if(ent.isIntersecting){
         ent.target.style.transformOrigin='left center';
         ent.target.style.transition='width 900ms cubic-bezier(.2,.9,.3,1)';
-        // width already set inline; re-assign to trigger transition
         const w = getComputedStyle(ent.target).width;
         ent.target.style.width = w;
       }
@@ -585,7 +737,6 @@ public String listStudents(Model model) {
   }, {threshold:0.2});
   skillBars.forEach(b=>skillObserver.observe(b));
 
-  // Small: prevent focus outlines from mouse users but keep for keyboard
   document.body.addEventListener('mousedown', ()=> document.body.classList.add('using-mouse'));
   document.body.addEventListener('keydown', ()=> document.body.classList.remove('using-mouse'));
   </script>
