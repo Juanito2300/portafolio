@@ -738,12 +738,12 @@ public String listStudents(Model model) {
   });
 
   $('#download-cv').addEventListener('click', ()=>{
-    const cvText = `T U N O M B R E - CV\\n\\nPerfil: Tecnólogo...\\nProyectos: ...\\nContact: TU_EMAIL`;
-    const blob = new Blob([cvText], {type:'text/plain'});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a'); a.href = url; a.download = 'TU_NOMBRE_CV.txt'; a.click();
-    URL.revokeObjectURL(url);
-  });
+  const a = document.createElement('a');
+  a.href = 'cv/Hoja de vida Juan Esteban Echeverri Rendon-1.pdf';
+  a.download = 'Hoja_de_vida_Juan_Esteban_Echeverri.pdf';
+  a.target = '_blank';
+  a.click();
+});
 
   window.addEventListener('keydown', e=>{ if(e.key==='Escape') modal.style.display='none'; });
 
