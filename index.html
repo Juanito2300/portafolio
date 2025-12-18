@@ -155,6 +155,7 @@
     .projects{grid-template-columns:1fr}
     .grid-3{grid-template-columns:repeat(2,1fr)}
   }
+
   @media (max-width:560px){
   main{
     padding:14px;
@@ -296,6 +297,13 @@
   @keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
 
   .wave{width:100%;height:36px;display:block;margin-top:6px;opacity:0.06}
+
+  /* SOLO DESKTOP */
+@media (min-width: 981px) {
+  .hero-left {
+    margin-top: -120px; /* ajusta a gusto */
+  }
+}
   </style>
 </head>
 <body>
@@ -320,7 +328,10 @@
     <section class="hero" aria-labelledby="hero-heading">
       <div class="hero-left">
         <h2 id="hero-heading">Creando soluciones reales con código limpio</h2>
-        <p class="tagline">Desarrollo web y móvil • APIs REST • OCR • Mapas en tiempo real</p>
+        <p class="tagline">
+          Backend & Frontend • APIs REST • MySQL / SQLite • Auth & Encriptación • OCR • Reportes PDF • Mapas en tiempo real
+        </p>
+
 
         <div class="cta-row">
           <button class="btn-primary" id="download-cv">Descargar CV</button>
@@ -338,10 +349,20 @@
         <div style="margin-top:12px" class="pills">
           <div class="pill">Python</div>
           <div class="pill">Flask</div>
-          <div class="pill">Java</div>
-          <div class="pill">Spring Boot</div>
+          <div class="pill">PHP</div>
+          <div class="pill">JavaScript</div>
           <div class="pill">Flutter</div>
+          <div class="pill">MySQL</div>
+          <div class="pill">HTML5</div>
+          <div class="pill">CSS3</div>
+          <div class="pill">APIs REST</div>
         </div>
+        <div style="margin-top:16px" class="panel">
+  <h4 style="margin:0 0 6px">Objetivo profesional</h4>
+  <p class="small-meta">
+    Busco prácticas profesionales o mi primer empleo como desarrollador junior, donde pueda aportar activamente en el desarrollo backend y frontend, creación e integración de APIs REST, manejo de bases de datos y construcción de soluciones tecnológicas reales. Me interesa seguir fortaleciendo mis habilidades técnicas, trabajar con buenas prácticas de desarrollo y crecer profesionalmente aportando valor al equipo y a los proyectos de la organización.
+  </p>
+</div>
       </div>
 
       <div class="card-3d" id="card3d" aria-hidden="true">
@@ -361,20 +382,53 @@
                   <div class="small-meta">Prácticas | Junior</div>
                 </div>
               </div>
-              <div style="margin-top:8px" class="small-meta">Especialidad: Backend, Mobile, OCR, Mapas</div>
+              <div style="margin-top:8px" class="small-meta">Especialidad: Experiencia en backend y frontend, APIs REST, bases de datos, autenticación segura, sistemas de facturación e inventarios, reportes PDF, OCR, desarrollo móvil y mapas en tiempo real</div>
             </div>
           </div>
 
           <div style="display:flex;gap:12px;align-items:center;justify-content:space-between">
             <div style="flex:1">
               <div class="skill">
-                <div class="meta"><span>Python (Flask)</span><span>75%</span></div>
-                <div class="bar"><i style="width:75%"></i></div>
+                <div class="meta"><span>Python (Flask)</span><span>80%</span></div>
+                <div class="bar"><i style="width:80%"></i></div>
               </div>
               <div class="skill" style="margin-top:8px">
-                <div class="meta"><span>Flutter</span><span>68%</span></div>
-                <div class="bar"><i style="width:68%"></i></div>
+                <div class="meta"><span>Flutter</span><span>60%</span></div>
+                <div class="bar"><i style="width:60%"></i></div>
               </div>
+              <div class="skill" style="margin-top:8px">
+                <div class="meta"><span>PHP</span><span>55%</span></div>
+                <div class="bar"><i style="width:55%"></i></div>
+              </div>
+              <div class="skill" style="margin-top:8px">
+  <div class="meta"><span>MySQL / SQLite</span><span>55%</span></div>
+  <div class="bar"><i style="width:55%"></i></div>
+</div>
+
+<div class="skill" style="margin-top:8px">
+  <div class="meta"><span>HTML5</span><span>65%</span></div>
+  <div class="bar"><i style="width:65%"></i></div>
+</div>
+
+<div class="skill" style="margin-top:8px">
+  <div class="meta"><span>CSS3 (Responsive / Animations)</span><span>60%</span></div>
+  <div class="bar"><i style="width:60%"></i></div>
+</div>
+
+<div class="skill" style="margin-top:8px">
+  <div class="meta"><span>JavaScript</span><span>50%</span></div>
+  <div class="bar"><i style="width:50%"></i></div>
+</div>
+
+<div class="skill" style="margin-top:8px">
+  <div class="meta"><span>APIs REST</span><span>50%</span></div>
+  <div class="bar"><i style="width:50%"></i></div>
+</div>
+
+<div class="skill" style="margin-top:8px">
+  <div class="meta"><span>Composer / Dependencias</span><span>40%</span></div>
+  <div class="bar"><i style="width:40%"></i></div>
+</div>
             </div>
             <div style="width:110px;text-align:center">
               <div style="font-size:12px;color:var(--muted)">Disponible</div>
@@ -456,29 +510,74 @@
       <div style="display:flex;gap:18px;align-items:flex-start">
         <div style="flex:1">
           <h3 style="margin-top:0">Habilidades</h3>
-          <div class="grid-3" role="list">
-            <div role="listitem" class="panel" style="padding:12px">
-              <h4 style="margin:4px 0">Backend</h4>
-              <p class="small-meta">APIs REST, WebSockets, autenticación por tokens, manejo de bases de datos</p>
-              <div style="margin-top:8px">
-                <div class="skill"><div class="meta"><span>Python / Flask</span><span>75%</span></div><div class="bar"><i style="width:75%"></i></div></div>
-                <div class="skill" style="margin-top:8px"><div class="meta"><span>Java / Spring Boot</span><span>60%</span></div><div class="bar"><i style="width:60%"></i></div></div>
-              </div>
-            </div>
+<div class="grid-3" role="list">
 
-            <div role="listitem" class="panel" style="padding:12px">
-              <h4 style="margin:4px 0">Front / Mobile</h4>
-              <p class="small-meta">Flutter, HTML, CSS, JavaScript básico y componentes responsivos</p>
-              <div style="margin-top:8px"><div class="skill"><div class="meta"><span>Flutter</span><span>68%</span></div><div class="bar"><i style="width:68%"></i></div></div></div>
-            </div>
+  <div role="listitem" class="panel" style="padding:12px">
+    <h4 style="margin:4px 0">Backend</h4>
+    <p class="small-meta">
+      Desarrollo de APIs REST, autenticación segura, lógica de negocio,
+      sistemas de facturación e inventarios, generación de reportes y manejo de bases de datos.
+    </p>
+    <div style="margin-top:8px">
+      <div class="skill">
+        <div class="meta"><span>Python / Flask</span><span>80%</span></div>
+        <div class="bar"><i style="width:80%"></i></div>
+      </div>
+      <div class="skill" style="margin-top:8px">
+        <div class="meta"><span>PHP</span><span>60%</span></div>
+        <div class="bar"><i style="width:60%"></i></div>
+      </div>
+    </div>
+  </div>
+  <div role="listitem" class="panel" style="padding:12px">
+    <h4 style="margin:4px 0">Frontend & Mobile</h4>
+    <p class="small-meta">
+      Desarrollo de interfaces web y móviles, diseño responsivo,
+      formularios, consumo de APIs y experiencia de usuario.
+    </p>
+    <div style="margin-top:8px">
+      <div class="skill">
+        <div class="meta"><span>HTML / CSS</span><span>65%</span></div>
+        <div class="bar"><i style="width:65%"></i></div>
+      </div>
+      <div class="skill" style="margin-top:8px">
+        <div class="meta"><span>JavaScript</span><span>50%</span></div>
+        <div class="bar"><i style="width:50%"></i></div>
+      </div>
+      <div class="skill" style="margin-top:8px">
+        <div class="meta"><span>Flutter</span><span>60%</span></div>
+        <div class="bar"><i style="width:60%"></i></div>
+      </div>
+    </div>
+  </div>
 
-            <div role="listitem" class="panel" style="padding:12px">
-              <h4 style="margin:4px 0">Otros</h4>
-              <p class="small-meta">OCR, Leaflet, Git, despliegue básico</p>
-              <div style="margin-top:8px"><div class="skill"><div class="meta"><span>OCR</span><span>50%</span></div><div class="bar"><i style="width:50%"></i></div></div></div>
-            </div>
-          </div>
-        </div>
+  <div role="listitem" class="panel" style="padding:12px">
+    <h4 style="margin:4px 0">Bases de datos & Otros</h4>
+    <p class="small-meta">
+      Manejo de bases de datos relacionales, OCR,
+      mapas interactivos y control de versiones.
+    </p>
+    <div style="margin-top:8px">
+      <div class="skill">
+        <div class="meta"><span>MySQL / SQLite</span><span>55%</span></div>
+        <div class="bar"><i style="width:55%"></i></div>
+      </div>
+      <div class="skill" style="margin-top:8px">
+        <div class="meta"><span>OCR (PaddleOCR / Tesseract)</span><span>55%</span></div>
+        <div class="bar"><i style="width:55%"></i></div>
+      </div>
+      <div class="skill" style="margin-top:8px">
+        <div class="meta"><span>Mapas (Leaflet)</span><span>60%</span></div>
+        <div class="bar"><i style="width:60%"></i></div>
+      </div>
+      <div class="skill" style="margin-top:8px">
+        <div class="meta"><span>Git</span><span>60%</span></div>
+        <div class="bar"><i style="width:60%"></i></div>
+      </div>
+    </div>
+  </div>
+
+</div>
 
         <div style="width:320px">
           <h3 style="margin-top:0">Experiencia y educación</h3>
@@ -518,9 +617,9 @@
       <p class="small-meta">Bachiller, Técnico en Agroindustria Alimentaria, Tecnólogo en Análisis y Desarrollo de Software (en curso).</p>
 
       <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
-        <div class="pill">Análisis y Desarrollo de Software</div>
         <div class="pill">Técnico: Agroindustria Alimentaria</div>
-        <div class="pill">Cursos: Python, Flutter, Spring Boot</div>
+        <div class="pill">Análisis y Desarrollo de Software</div>
+        <div class="pill">Cursos: Python, Flutter, PHP, Bases de Datos, HTML5, CSS3 y JavaScript</div>
       </div>
     </section>
 
@@ -623,70 +722,21 @@
   });
 
   const phrases = [
-  'Desarrollo backend.',
-  'Integración de APIs.',
-  'Aplicaciones móviles.',
-  'OCR y procesamiento.',
-  'Mapas en tiempo real.'
+  'Backend con Flask y PHP.',
+  'APIs REST y autenticación.',
+  'Bases de datos MySQL y SQLite.',
+  'Frontend web responsivo.',
+  'JavaScript y consumo de APIs.',
+  'Apps móviles con Flutter.',
+  'OCR y procesamiento de datos.',
+  'Reportes PDF automatizados.',
+  'Mapas y geolocalización en tiempo real.'
 ];
 
 let tIndex = 0;
 const typeEl = $('#type-line');
-let audioCtx;
-let audioUnlocked = false;
 
-function unlockAudio() {
-  if (audioUnlocked) return;
-
-  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-  // 🔓 FORZAR ACTIVACIÓN REAL DEL AUDIO
-  audioCtx.resume().then(() => {
-    audioUnlocked = true;
-  });
-}
-
-document.addEventListener('click', unlockAudio, { once: true });
-document.addEventListener('touchstart', unlockAudio, { once: true });
-
-function playKeySound() {
-  if (!audioUnlocked) return;
-
-  const duration = 0.01; // 10ms (clic seco)
-
-  const bufferSize = audioCtx.sampleRate * duration;
-  const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-  const data = buffer.getChannelData(0);
-
-  // Ruido blanco corto (tecla real)
-  for (let i = 0; i < bufferSize; i++) {
-    data[i] = (Math.random() * 2 - 1) * 0.25;
-  }
-
-  const noise = audioCtx.createBufferSource();
-  noise.buffer = buffer;
-
-  const filter = audioCtx.createBiquadFilter();
-  filter.type = 'highpass';
-  filter.frequency.value = 800;
-
-  const gain = audioCtx.createGain();
-  gain.gain.setValueAtTime(0.35, audioCtx.currentTime);
-  gain.gain.exponentialRampToValueAtTime(
-    0.001,
-    audioCtx.currentTime + duration
-  );
-
-  noise.connect(filter);
-  filter.connect(gain);
-  gain.connect(audioCtx.destination);
-
-  noise.start();
-  noise.stop(audioCtx.currentTime + duration);
-
-  // 📱 vibración sutil en móviles
-  if (navigator.vibrate) navigator.vibrate(5);
-}
+// ⌨️ Loop de escritura (solo visual)
 function loopType() {
   const p = phrases[tIndex % phrases.length];
   let i = 0;
@@ -694,11 +744,7 @@ function loopType() {
 
   const it = setInterval(() => {
     typeEl.textContent = p.slice(0, i + 1);
-
-// 🔊 sonar solo si NO es un espacio
-if (p[i] !== ' ') playKeySound();
-
-i++;
+    i++;
 
     if (i >= p.length) {
       clearInterval(it);
@@ -853,18 +899,7 @@ Nombre: ${name}`
 
   window.addEventListener('keydown', e=>{ if(e.key==='Escape') modal.style.display='none'; });
 
-  const skillBars = $$('.bar i');
-  const skillObserver = new IntersectionObserver(entries=>{
-    entries.forEach(ent=>{
-      if(ent.isIntersecting){
-        ent.target.style.transformOrigin='left center';
-        ent.target.style.transition='width 900ms cubic-bezier(.2,.9,.3,1)';
-        const w = getComputedStyle(ent.target).width;
-        ent.target.style.width = w;
-      }
-    });
-  }, {threshold:0.2});
-  skillBars.forEach(b=>skillObserver.observe(b));
+  
 
   document.body.addEventListener('mousedown', ()=> document.body.classList.add('using-mouse'));
   document.body.addEventListener('keydown', ()=> document.body.classList.remove('using-mouse'));
