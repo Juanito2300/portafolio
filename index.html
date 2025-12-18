@@ -608,7 +608,6 @@
     </div>
   </div>
 
-  <audio id="typeSound" src="sounds/key.mp3" preload="auto"></audio>
 
   <script>
   const $ = (s, el=document) => el.querySelector(s);
@@ -633,34 +632,41 @@
 
 let tIndex = 0;
 const typeEl = $('#type-line');
-const typeSound = document.getElementById('typeSound');
+let audioCtx;
 let audioUnlocked = false;
 
-// 🔓 Desbloquear audio con el PRIMER toque/click
+// 🔓 Desbloqueo de audio (primer toque)
 function unlockAudio() {
-  if (!typeSound || audioUnlocked) return;
-
-  typeSound.volume = 0.25;
-  typeSound.play()
-    .then(() => {
-      typeSound.pause();
-      typeSound.currentTime = 0;
-      audioUnlocked = true;
-    })
-    .catch(() => {});
+  if (audioUnlocked) return;
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  audioUnlocked = true;
 }
 
-// 👉 Primer toque en cualquier parte de la página
 document.addEventListener('click', unlockAudio, { once: true });
 document.addEventListener('touchstart', unlockAudio, { once: true });
 
-// 🔊 Sonido de tecleo
+// 🔊 Sonido tipo teclado (sin archivos)
 function playKeySound() {
-  if (!audioUnlocked || !typeSound) return;
-  typeSound.currentTime = 0;
-  typeSound.play().catch(() => {});
-}
+  if (!audioUnlocked) return;
 
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+
+  osc.type = 'square'; // teclado mecánico
+  osc.frequency.value = 1600 + Math.random() * 300;
+
+  gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(
+    0.001,
+    audioCtx.currentTime + 0.035
+  );
+
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+
+  osc.start();
+  osc.stop(audioCtx.currentTime + 0.035);
+}
 // ⌨️ Loop de escritura
 function loopType() {
   const p = phrases[tIndex % phrases.length];
@@ -682,7 +688,6 @@ function loopType() {
   }, 45);
 }
 
-// ▶️ Arranca el efecto apenas carga la página
 loopType();
 
   const reveals = $$('.reveal');
