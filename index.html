@@ -608,6 +608,8 @@
     </div>
   </div>
 
+  <audio id="typeSound" src="sounds/key.mp3" preload="auto"></audio>
+
   <script>
   const $ = (s, el=document) => el.querySelector(s);
   const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
@@ -622,41 +624,66 @@
   });
 
   const phrases = [
-    'Desarrollo backend.','Integración de APIs.','Aplicaciones móviles.','OCR y procesamiento.','Mapas en tiempo real.'
-  ];
-  let tIndex=0;const typeEl = $('#type-line');
-  let typing=false;
-  const typeSound = document.getElementById('typeSound');
+  'Desarrollo backend.',
+  'Integración de APIs.',
+  'Aplicaciones móviles.',
+  'OCR y procesamiento.',
+  'Mapas en tiempo real.'
+];
 
-function playKeySound(){
-  if(!typeSound) return;
-  typeSound.currentTime = 0;
+let tIndex = 0;
+const typeEl = $('#type-line');
+const typeSound = document.getElementById('typeSound');
+let audioUnlocked = false;
+
+// 🔓 Desbloquear audio con el PRIMER toque/click
+function unlockAudio() {
+  if (!typeSound || audioUnlocked) return;
+
   typeSound.volume = 0.25;
-  typeSound.play().catch(()=>{});
+  typeSound.play()
+    .then(() => {
+      typeSound.pause();
+      typeSound.currentTime = 0;
+      audioUnlocked = true;
+    })
+    .catch(() => {});
 }
 
-function loopType(){
+// 👉 Primer toque en cualquier parte de la página
+document.addEventListener('click', unlockAudio, { once: true });
+document.addEventListener('touchstart', unlockAudio, { once: true });
+
+// 🔊 Sonido de tecleo
+function playKeySound() {
+  if (!audioUnlocked || !typeSound) return;
+  typeSound.currentTime = 0;
+  typeSound.play().catch(() => {});
+}
+
+// ⌨️ Loop de escritura
+function loopType() {
   const p = phrases[tIndex % phrases.length];
   let i = 0;
   typeEl.textContent = '';
-  typing = true;
 
   const it = setInterval(() => {
     typeEl.textContent = p.slice(0, i + 1);
-    playKeySound();   // 🔊 SONIDO POR LETRA
+    playKeySound();
     i++;
 
     if (i >= p.length) {
       clearInterval(it);
       setTimeout(() => {
-        typing = false;
         tIndex++;
         loopType();
       }, 900);
     }
   }, 45);
 }
-  loopType();
+
+// ▶️ Arranca el efecto apenas carga la página
+loopType();
 
   const reveals = $$('.reveal');
   const io = new IntersectionObserver(entries=>{
