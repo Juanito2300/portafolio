@@ -635,39 +635,58 @@ const typeEl = $('#type-line');
 let audioCtx;
 let audioUnlocked = false;
 
-// 🔓 Desbloqueo de audio (primer toque)
 function unlockAudio() {
   if (audioUnlocked) return;
+
   audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  audioUnlocked = true;
+
+  // 🔓 FORZAR ACTIVACIÓN REAL DEL AUDIO
+  audioCtx.resume().then(() => {
+    audioUnlocked = true;
+  });
 }
 
 document.addEventListener('click', unlockAudio, { once: true });
 document.addEventListener('touchstart', unlockAudio, { once: true });
 
-// 🔊 Sonido tipo teclado (sin archivos)
 function playKeySound() {
   if (!audioUnlocked) return;
 
-  const osc = audioCtx.createOscillator();
+  const duration = 0.01; // 10ms (clic seco)
+
+  const bufferSize = audioCtx.sampleRate * duration;
+  const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+  const data = buffer.getChannelData(0);
+
+  // Ruido blanco corto (tecla real)
+  for (let i = 0; i < bufferSize; i++) {
+    data[i] = (Math.random() * 2 - 1) * 0.25;
+  }
+
+  const noise = audioCtx.createBufferSource();
+  noise.buffer = buffer;
+
+  const filter = audioCtx.createBiquadFilter();
+  filter.type = 'highpass';
+  filter.frequency.value = 800;
+
   const gain = audioCtx.createGain();
-
-  osc.type = 'square'; // teclado mecánico
-  osc.frequency.value = 1600 + Math.random() * 300;
-
-  gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+  gain.gain.setValueAtTime(0.35, audioCtx.currentTime);
   gain.gain.exponentialRampToValueAtTime(
     0.001,
-    audioCtx.currentTime + 0.035
+    audioCtx.currentTime + duration
   );
 
-  osc.connect(gain);
+  noise.connect(filter);
+  filter.connect(gain);
   gain.connect(audioCtx.destination);
 
-  osc.start();
-  osc.stop(audioCtx.currentTime + 0.035);
+  noise.start();
+  noise.stop(audioCtx.currentTime + duration);
+
+  // 📱 vibración sutil en móviles
+  if (navigator.vibrate) navigator.vibrate(5);
 }
-// ⌨️ Loop de escritura
 function loopType() {
   const p = phrases[tIndex % phrases.length];
   let i = 0;
@@ -675,8 +694,11 @@ function loopType() {
 
   const it = setInterval(() => {
     typeEl.textContent = p.slice(0, i + 1);
-    playKeySound();
-    i++;
+
+// 🔊 sonar solo si NO es un espacio
+if (p[i] !== ' ') playKeySound();
+
+i++;
 
     if (i >= p.length) {
       clearInterval(it);
