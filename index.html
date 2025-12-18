@@ -488,7 +488,7 @@
               <div class="body">
                 <strong>Herbasana — Asistente en cultivo</strong>
                 <div class="small-meta">Siembra, poda, riego, control de plagas</div>
-                <div class="small-meta">Fechas: ______</div>
+                <div class="small-meta">Fechas: 2023-2026 - Actual</div>
               </div>
             </div>
 
@@ -497,7 +497,7 @@
               <div class="body">
                 <strong>Quesera — Operario de producción</strong>
                 <div class="small-meta">Manejo de molino, rotulado, empaque, control de calidad</div>
-                <div class="small-meta">Fechas: ______</div>
+                <div class="small-meta">Fechas: 2020-2022</div>
               </div>
             </div>
 
@@ -505,7 +505,7 @@
               <div class="dot" aria-hidden></div>
               <div class="body">
                 <strong>Tecnólogo en Desarrollo de Software</strong>
-                <div class="small-meta">Institución: ______ — Año: __</div>
+                <div class="small-meta">Institución: UNAD Año: 2026 -Actual</div>
               </div>
             </div>
           </div>
@@ -525,38 +525,54 @@
     </section>
 
     <section id="contact" class="panel reveal">
-      <h3 style="margin-top:0">Contacto</h3>
-      <div style="display:flex;gap:18px;align-items:flex-start">
-        <div style="flex:1">
-          <p class="small-meta">
-  Correo:
-  <a href="mailto:juanestebanecheverri63@gmail.com" style="color:var(--accent)">
-    juanestebanecheverri63@gmail.com
-  </a>
-</p>
+  <h3 style="margin-top:0">Contacto</h3>
+  <div style="display:flex;gap:18px;align-items:flex-start">
+    <div style="flex:1">
 
-<p class="small-meta">
-  GitHub:
-  <a href="https://github.com/Juanito2300" target="_blank" style="color:var(--accent)">
-    @Juanito2300
-  </a>
-</p>
+      <!-- CORREO -->
+      <p class="small-meta" style="display:flex;align-items:center;gap:8px">
+        <span>📧</span>
+        <a href="mailto:juanestebanecheverri63@gmail.com" style="color:var(--accent)">
+          juanestebanecheverri63@gmail.com
+        </a>
+      </p>
 
-<p class="small-meta">
-  LinkedIn:
-  <a href="https://www.linkedin.com" target="_blank" style="color:var(--accent)">
-    Juan Esteban Echeverri Rendon
-  </a>
-</p>
+      <!-- WHATSAPP -->
+      <p class="small-meta" style="display:flex;align-items:center;gap:8px">
+        <span>💬</span>
+        <a
+          href="https://wa.me/573105928091?text=Hola%20Juan%20Esteban,%20te%20contacto%20desde%20tu%20portafolio"
+          target="_blank"
+          style="color:var(--accent)"
+        >
+          WhatsApp: 310 592 8091
+        </a>
+      </p>
 
-<div style="margin-top:12px">
-  <a
-    class="btn-primary"
-    href="mailto:juanestebanecheverri63@gmail.com?subject=Contacto%20desde%20portafolio"
-  >
-    Enviar correo
-  </a>
-</div>
+      <!-- GITHUB -->
+      <p class="small-meta" style="display:flex;align-items:center;gap:8px">
+        <span>🐙</span>
+        <a href="https://github.com/Juanito2300" target="_blank" style="color:var(--accent)">
+          @Juanito2300
+        </a>
+      </p>
+
+      <!-- LINKEDIN -->
+      <p class="small-meta" style="display:flex;align-items:center;gap:8px">
+        <span>💼</span>
+        <a href="https://www.linkedin.com" target="_blank" style="color:var(--accent)">
+          Juan Esteban Echeverri Rendon
+        </a>
+      </p>
+
+      <div style="margin-top:12px">
+        <a
+          class="btn-primary"
+          href="mailto:juanestebanecheverri63@gmail.com?subject=Contacto%20desde%20portafolio"
+        >
+          Enviar correo
+        </a>
+      </div>
         </div>
         <div style="width:360px">
           <form id="contactForm">
@@ -577,8 +593,8 @@
     <footer>
       <div class="small-meta">© <strong>Juan Esteban Echeverri Rendon</strong> — Tecnólogo en Desarrollo de Software</div>
       <div style="display:flex;gap:8px">
-        <a class="nav-btn" href="https://github.com/TU_GITHUB" target="_blank">GitHub</a>
-        <a class="nav-btn" href="https://www.linkedin.com/in/TU_LINKEDIN" target="_blank">LinkedIn</a>
+        <a class="nav-btn" href="https://github.com/Juanito2300" target="_blank">GitHub</a>
+        <a class="nav-btn" href="https://www.linkedin.com" target="_blank">LinkedIn</a>
       </div>
     </footer>
   </main>
@@ -610,12 +626,36 @@
   ];
   let tIndex=0;const typeEl = $('#type-line');
   let typing=false;
-  function loopType(){
-    const p = phrases[tIndex%phrases.length];
-    let i=0;typeEl.textContent='';
-    typing=true;
-    const it = setInterval(()=>{ typeEl.textContent = p.slice(0,i+1); i++; if(i>=p.length){ clearInterval(it); setTimeout(()=>{typing=false;tIndex++; loopType()},900)} },40);
-  }
+  const typeSound = document.getElementById('typeSound');
+
+function playKeySound(){
+  if(!typeSound) return;
+  typeSound.currentTime = 0;
+  typeSound.volume = 0.25;
+  typeSound.play().catch(()=>{});
+}
+
+function loopType(){
+  const p = phrases[tIndex % phrases.length];
+  let i = 0;
+  typeEl.textContent = '';
+  typing = true;
+
+  const it = setInterval(() => {
+    typeEl.textContent = p.slice(0, i + 1);
+    playKeySound();   // 🔊 SONIDO POR LETRA
+    i++;
+
+    if (i >= p.length) {
+      clearInterval(it);
+      setTimeout(() => {
+        typing = false;
+        tIndex++;
+        loopType();
+      }, 900);
+    }
+  }, 45);
+}
   loopType();
 
   const reveals = $$('.reveal');
@@ -724,18 +764,30 @@ public String listStudents(Model model) {
 
   function escapeHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
 
-  $('#contactForm').addEventListener('submit', function(ev){
-    ev.preventDefault();
-    const name = $('#name').value.trim();
-    const msg = $('#message').value.trim();
-    if(!name || !msg) return;
-    const subject = encodeURIComponent('Contacto desde portafolio: '+name);
-    const body = encodeURIComponent(msg + "\\n\\n--\\nNombre: "+name);
-    const mail = 'mailto:TU_EMAIL?subject='+subject+'&body='+body;
-    $('#contactResult').style.display='block';
-    $('#contactResult').textContent='Preparando correo...';
-    setTimeout(()=>{ window.location.href = mail; $('#contactResult').textContent='Abriendo cliente de correo...'; },600);
-  });
+  $('#contactForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const name = $('#name').value.trim();
+  const message = $('#message').value.trim();
+
+  if (!name || !message) return;
+
+  const email = 'juanestebanecheverri63@gmail.com';
+
+  const subject = encodeURIComponent(`Contacto desde portafolio: ${name}`);
+
+  const body = encodeURIComponent(
+`Hola Juan Esteban,
+
+${message}
+
+Nombre: ${name}`
+  );
+
+  const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`;
+
+  window.location.href = mailtoLink;
+});
 
   $('#download-cv').addEventListener('click', ()=>{
   const a = document.createElement('a');
