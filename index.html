@@ -310,6 +310,31 @@
     flex-direction:column !important;
   }
 
+  .contact-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    padding:11px 15px;
+    font-size:13px;
+    font-weight:600;
+
+    border-radius:12px;
+    background: rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.18);
+
+    box-shadow:
+      0 10px 24px rgba(2,6,23,0.6);
+
+    width:auto;
+  }
+
+  .contact-btn i{
+    font-size:14px;
+    opacity:.9;
+  }
+
   #contact > div > div{
     width:100% !important;
   }
@@ -527,6 +552,55 @@
   transform:scale(.96);
 }
 
+
+
+.download-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  position:relative;
+  overflow:hidden;
+}
+
+/* icono */
+.download-btn .dl-icon{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:15px;
+  transition:transform .3s ease;
+}
+
+/* animación de descarga */
+.download-btn.downloading .dl-icon{
+  animation: downloadPulse 1s infinite;
+}
+
+@keyframes downloadPulse{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(4px)}
+  100%{transform:translateY(0)}
+}
+
+/* brillo sutil */
+.download-btn::after{
+  content:'';
+  position:absolute;
+  inset:-40%;
+  background: linear-gradient(
+    120deg,
+    transparent 40%,
+    rgba(255,255,255,0.45),
+    transparent 60%
+  );
+  transform:translateX(-100%);
+}
+
+.download-btn:hover::after{
+  transform:translateX(100%);
+  transition:transform .8s ease;
+}
+
   </style>
 </head>
 <body>
@@ -541,11 +615,26 @@
       </div>
 
       <nav aria-label="Main navigation">
-        <button class="nav-btn" data-scroll="#projects">Proyectos</button>
-        <button class="nav-btn" data-scroll="#skills">Habilidades</button>
-        <button class="nav-btn" data-scroll="#about">Formación</button>
-        <button class="nav-btn" data-scroll="#contact">Contacto</button>
-      </nav>
+  <button class="nav-btn" data-scroll="#projects">
+    <i class="fa-solid fa-folder-open"></i>
+    <span>Proyectos</span>
+  </button>
+
+  <button class="nav-btn" data-scroll="#skills">
+    <i class="fa-solid fa-bolt"></i>
+    <span>Habilidades</span>
+  </button>
+
+  <button class="nav-btn" data-scroll="#about">
+    <i class="fa-solid fa-graduation-cap"></i>
+    <span>Formación</span>
+  </button>
+
+  <button class="nav-btn" data-scroll="#contact">
+    <i class="fa-solid fa-envelope"></i>
+    <span>Contacto</span>
+  </button>
+</nav>
     </header>
 
     <section class="hero" aria-labelledby="hero-heading">
@@ -557,8 +646,16 @@
 
 
         <div class="cta-row">
-          <button class="btn-primary" id="download-cv">Descargar CV</button>
-          <button class="nav-btn btn-ghost" data-scroll="#contact">Contactar</button>
+          <button class="btn-primary download-btn" id="download-cv">
+  <span class="dl-icon">
+    <i class="fas fa-download"></i>
+  </span>
+  <span class="dl-text">Descargar CV</span>
+</button>
+        <button class="nav-btn btn-ghost contact-btn" data-scroll="#contact">
+  <i class="fa-solid fa-user"></i>
+  <span>Contactar</span>
+</button>
         </div>
 
         <div style="margin-top:16px">
@@ -666,7 +763,6 @@
             </div>
           </div>
 
-          
             <div style="display:flex;gap:8px">
               <button class="pill cta-pill" id="openProjects">Ver proyectos</button>
               <button class="pill cta-pill secondary" id="openContact">Contacto</button>
@@ -1073,6 +1169,16 @@ public String listStudents(Model model) {
 `
     }
   };
+
+const dlBtn = document.getElementById('download-cv');
+
+dlBtn.addEventListener('click', ()=>{
+  dlBtn.classList.add('downloading');
+
+  setTimeout(()=>{
+    dlBtn.classList.remove('downloading');
+  }, 1800);
+});
 
   function openProj(id){
     const p = projects[id];
