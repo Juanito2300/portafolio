@@ -1676,12 +1676,10 @@ document.addEventListener('click', e => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Obtener la hora actual
   const now = new Date();
   const hour = now.getHours();
   
   let timeGreeting = "";
-  
   if(hour >= 5 && hour < 12){
     timeGreeting = "Buenos días";
   } else if(hour >= 12 && hour < 18){
@@ -1694,30 +1692,24 @@ document.addEventListener("DOMContentLoaded", () => {
 Espero que disfrutes mi portafolio, donde encontrarás proyectos reales, soluciones innovadoras y experiencia en desarrollo backend, frontend, APIs y más.`;
 
   const utterance = new SpeechSynthesisUtterance(message);
-  
   const voices = window.speechSynthesis.getVoices();
-  const maleVoice = voices.find(voice => voice.lang.startsWith('es') && voice.name.toLowerCase().includes('male')) 
-                  || voices.find(voice => voice.lang.startsWith('es'));
-  
-  if(maleVoice) {
-    utterance.voice = maleVoice;
-  }
-
+  const maleVoice = voices.find(voice => voice.lang.startsWith('es') && voice.name.toLowerCase().includes('male'))
+                    || voices.find(voice => voice.lang.startsWith('es'));
+  if(maleVoice) utterance.voice = maleVoice;
   utterance.rate = 1;
   utterance.pitch = 1;
 
+  // Función que reproduce la voz al interactuar
   function speakOnInteraction() {
     window.speechSynthesis.speak(utterance);
     document.removeEventListener('touchstart', speakOnInteraction);
     document.removeEventListener('click', speakOnInteraction);
   }
 
+  // Eventos para móviles y desktop: cualquier toque o click dispara el saludo
   document.addEventListener('touchstart', speakOnInteraction, { once: true });
   document.addEventListener('click', speakOnInteraction, { once: true });
-
-  speakOnInteraction();
 });
-
 function confirmarLlamada() {
   const nombre = "Juan Echeverri";
   const telefono = "3105928091";
