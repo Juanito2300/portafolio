@@ -552,8 +552,6 @@
   transform:scale(.96);
 }
 
-
-
 .download-btn{
   display:inline-flex;
   align-items:center;
@@ -628,20 +626,6 @@
   50%  { transform: translateY(-3px); }
   100% { transform: translateY(0); }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .hero-pills .pill{
   position: relative;
@@ -756,14 +740,56 @@
   }
 }
 
+#skill-info{
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%) translateY(20px);
 
+  width: 92%;
+  max-width: 420px;
 
+  background: rgba(15,23,42,0.97);
+  backdrop-filter: blur(14px);
 
+  border-radius: 16px;
+  padding: 18px;
 
+  box-shadow: 0 30px 60px rgba(0,0,0,.45);
+  border: 1px solid rgba(255,255,255,0.08);
 
+  opacity: 0;
+  pointer-events: none;
+  transition: all .35s ease;
 
+  z-index: 9999;
+}
 
+#skill-info.show{
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
 
+#skill-info h4{
+  margin: 0 0 6px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--accent-2);
+}
+
+#skill-info p{
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #cbd5f5;
+}
+
+#skill-level{
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+}
 
 
 
@@ -834,15 +860,68 @@
         </svg>
 
         <div style="margin-top:12px" class="pills hero-pills">
-  <div class="pill"><i class="fab fa-python"></i> Python</div>
-  <div class="pill"><i class="fas fa-flask"></i> Flask</div>
-  <div class="pill"><i class="fab fa-php"></i> PHP</div>
-  <div class="pill"><i class="fab fa-js"></i> JavaScript</div>
-  <div class="pill"><i class="fas fa-mobile-alt"></i> Flutter</div>
-  <div class="pill"><i class="fas fa-database"></i> MySQL</div>
-  <div class="pill"><i class="fab fa-html5"></i> HTML5</div>
-  <div class="pill"><i class="fab fa-css3-alt"></i> CSS3</div>
-  <div class="pill"><i class="fas fa-network-wired"></i> APIs REST</div>
+ <div class="pill"
+  data-title="Python"
+  data-level="80%"
+  data-desc="Manejo sólido de Python enfocado al desarrollo backend. He trabajado en automatización de procesos, manejo de archivos, generación de reportes PDF, integración de OCR, consumo de APIs y lógica de negocio. Uso Python principalmente con Flask para construir aplicaciones funcionales y escalables.">
+  <i class="fab fa-python"></i> Python
+</div>
+
+<div class="pill"
+  data-title="Flask"
+  data-level="80%"
+  data-desc="Experiencia desarrollando aplicaciones web con Flask, estructuración de proyectos, rutas, formularios, autenticación, manejo de sesiones, conexión a bases de datos y despliegue de funcionalidades reales para sistemas administrativos.">
+  <i class="fas fa-flask"></i> Flask
+</div>
+
+<div class="pill"
+  data-title="PHP"
+  data-level="55%"
+  data-desc="Uso de PHP para desarrollo backend tradicional, manejo de formularios, sesiones, autenticación básica, conexión con bases de datos MySQL y desarrollo de módulos funcionales para sistemas web.">
+  <i class="fab fa-php"></i> PHP
+</div>
+
+<div class="pill"
+  data-title="JavaScript"
+  data-level="50%"
+  data-desc="Uso de JavaScript para interacción en el frontend, validaciones, manejo del DOM, animaciones suaves, lógica de interfaz y mejora de la experiencia de usuario en aplicaciones web.">
+  <i class="fab fa-js"></i> JavaScript
+</div>
+
+<div class="pill"
+  data-title="Flutter"
+  data-level="60%"
+  data-desc="Desarrollo de aplicaciones móviles multiplataforma con Flutter, creación de interfaces, navegación entre pantallas, consumo de APIs REST y manejo de estados básicos para apps funcionales.">
+  <i class="fas fa-mobile-alt"></i> Flutter
+</div>
+
+<div class="pill"
+  data-title="MySQL"
+  data-level="55%"
+  data-desc="Manejo de bases de datos MySQL y SQLite, creación de tablas, relaciones, consultas SQL, integración con backend y almacenamiento persistente de información.">
+  <i class="fas fa-database"></i> MySQL
+</div>
+
+<div class="pill"
+  data-title="HTML5"
+  data-level="65%"
+  data-desc="Estructuración semántica de sitios web con HTML5, buenas prácticas de accesibilidad, organización correcta del contenido y compatibilidad multiplataforma.">
+  <i class="fab fa-html5"></i> HTML5
+</div>
+
+<div class="pill"
+  data-title="CSS3"
+  data-level="60%"
+  data-desc="Diseño responsive, animaciones, efectos visuales, layouts modernos (Flexbox / Grid), optimización para móviles y construcción de interfaces profesionales.">
+  <i class="fab fa-css3-alt"></i> CSS3
+</div>
+
+<div class="pill"
+  data-title="APIs REST"
+  data-level="50%"
+  data-desc="Consumo y creación de APIs REST, manejo de JSON, integración entre frontend y backend, envío y recepción de datos y conexión entre servicios.">
+  <i class="fas fa-network-wired"></i> APIs REST
+</div>
 </div>
         <div style="margin-top:16px" class="panel objective-desktop">
   <h4 style="margin:0 0 6px">Objetivo profesional</h4>
@@ -1201,6 +1280,14 @@
     </div>
   </div>
 
+
+<div id="skill-info">
+  <h4 id="skill-title"></h4>
+  <p id="skill-desc"></p>
+  <div id="skill-level"></div>
+</div>
+
+
   <script>
   const $ = (s, el=document) => el.querySelector(s);
   const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
@@ -1346,6 +1433,47 @@ dlBtn.addEventListener('click', ()=>{
     dlBtn.classList.remove('downloading');
   }, 1800);
 });
+
+
+
+
+const infoBox = document.getElementById('skill-info');
+const titleEl = document.getElementById('skill-title');
+const descEl  = document.getElementById('skill-desc');
+const levelEl = document.getElementById('skill-level');
+
+document.querySelectorAll('.hero-pills .pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    titleEl.textContent = pill.dataset.title;
+    descEl.textContent  = pill.dataset.desc;
+    levelEl.textContent = 'Nivel estimado: ' + pill.dataset.level;
+
+    infoBox.classList.add('show');
+
+    clearTimeout(window.skillTimer);
+    window.skillTimer = setTimeout(() => {
+      infoBox.classList.remove('show');
+    }, 4500);
+  });
+});
+
+/* cerrar tocando fuera */
+document.addEventListener('click', e => {
+  if(!e.target.closest('.pill')){
+    infoBox.classList.remove('show');
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
 
   function openProj(id){
     const p = projects[id];
