@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css?v=1" />
   <title>Juan Echeverri — Portafolio</title>
   <meta name="description" content="Portafolio de Juan E — Desarrollo Web & Móvil, backend, OCR, maps, APIs." />
@@ -76,9 +75,10 @@
   white-space:normal;
   overflow:hidden;
 
-  word-break:break-word;
-  overflow-wrap:anywhere;
-  hyphens:auto;
+    /* 🔥 CORRECCIÓN */
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
 }
   .tagline{
   color:var(--muted);
@@ -212,6 +212,9 @@
     margin-bottom:12px;
     animation: fadeInUp 1s ease-out forwards; 
     opacity:0;
+    word-break: normal !important;
+    overflow-wrap: break-word;
+    hyphens: none;
   }
 
   @keyframes fadeInUp {
