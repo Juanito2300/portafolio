@@ -1676,6 +1676,7 @@ document.addEventListener('click', e => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Obtener la hora actual
   const now = new Date();
   const hour = now.getHours();
   
@@ -1702,10 +1703,19 @@ Espero que disfrutes mi portafolio, donde encontrarás proyectos reales, solucio
     utterance.voice = maleVoice;
   }
 
-  utterance.rate = 1; 
-  utterance.pitch = 1; 
+  utterance.rate = 1;
+  utterance.pitch = 1;
 
-  window.speechSynthesis.speak(utterance);
+  function speakOnInteraction() {
+    window.speechSynthesis.speak(utterance);
+    document.removeEventListener('touchstart', speakOnInteraction);
+    document.removeEventListener('click', speakOnInteraction);
+  }
+
+  document.addEventListener('touchstart', speakOnInteraction, { once: true });
+  document.addEventListener('click', speakOnInteraction, { once: true });
+
+  speakOnInteraction();
 });
 
 function confirmarLlamada() {
