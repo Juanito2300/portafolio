@@ -796,7 +796,25 @@
   transform: scale(0.96);
 }
 
+.proj-thumb {
+  position: relative;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  overflow: hidden;
+}
 
+.proj-thumb-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  text-align: center;
+  padding: 6px 0;
+  font-weight: bold;
+}
 
   </style>
 </head>
@@ -837,7 +855,7 @@
       <div class="hero-left">
         <h2 id="hero-heading">Transformando ideas en soluciones digitales escalables</h2>
         <p class="tagline">
-          Backend & Frontend • APIs REST • MySQL / SQLite • Auth & Encriptación • OCR • Reportes PDF • Mapas en tiempo real
+          Backend & Frontend • APIs REST • MySQL / SQLite • Auth & Encriptación • OCR • Reportes PDF • Mapas en tiempo real • Sistemas de facturacion • Inventarios
         </p>
 
 
@@ -1037,58 +1055,134 @@
       <p class="small-meta">Proyectos reales, código abierto y demos. Click en "Abrir" para ver detalles y fragmentos de código.</p>
 
       <div class="projects" aria-live="polite">
-        <article class="proj-card" data-proj="gps">
-          <div class="proj-thumb">Rastreo GPS (Realtime)</div>
-          <h4 class="proj-title">Sistema de rastreo GPS en tiempo real</h4>
-          <p class="small-meta">Backend en Flask, API REST, WebSockets, frontend con Leaflet</p>
-          <div class="proj-badges">
-            <span class="badge">Python</span><span class="badge">Flask</span><span class="badge">Leaflet</span><span class="badge">SQLite</span>
-          </div>
-          <div style="margin-top:12px;display:flex;gap:8px">
-            <button class="nav-btn open-proj" data-id="gps">Abrir</button>
-            <a class="nav-btn" href="https://github.com/TU_GITHUB/gps-tracker" target="_blank">Código</a>
-          </div>
-        </article>
 
-        <article class="proj-card" data-proj="ocr">
-          <div class="proj-thumb">OCR Facturas</div>
-          <h4 class="proj-title">Lector de facturas con OCR</h4>
-          <p class="small-meta">PaddleOCR/Tesseract, extracción de montos y productos</p>
-          <div class="proj-badges">
-            <span class="badge">Python</span><span class="badge">OCR</span><span class="badge">Flask</span>
-          </div>
-          <div style="margin-top:12px;display:flex;gap:8px">
-            <button class="nav-btn open-proj" data-id="ocr">Abrir</button>
-            <a class="nav-btn" href="https://github.com/TU_GITHUB/ocr-invoices" target="_blank">Código</a>
-          </div>
-        </article>
+  <article class="proj-card" data-proj="gps">
+  <div class="proj-thumb" style="background-image: url('img/Captura\ de\ pantalla\ \(72\).png');">
+    <div class="proj-thumb-overlay">Rastreo GPS (Realtime)</div>
+  </div>
+    <h4 class="proj-title">Sistema de rastreo GPS en tiempo real</h4>
+    <p class="small-meta">Backend en Flask, API REST, WebSockets, frontend con Leaflet</p>
+    <div class="proj-badges">
+      <span class="badge"><i class="fab fa-python"></i> Python</span>
+      <span class="badge"><i class="fas fa-flask"></i> Flask</span>
+      <span class="badge"><i class="fas fa-map-marked-alt"></i> Leaflet</span>
+      <span class="badge"><i class="fas fa-database"></i> SQLite</span>
+      <span class="badge"><i class="fab fa-js-square"></i> JS</span>
+    </div>
+    <div style="margin-top:12px; display:flex; gap:8px;">
+      <button class="nav-btn open-proj" data-id="gps"><i class="fas fa-eye"></i> Abrir</button>
+      <a class="nav-btn" href="https://github.com/Juanito2300/Rastreador" target="_blank"><i class="fab fa-github"></i> Código</a>
+    </div>
+  </article>
 
-        <article class="proj-card" data-proj="app">
-          <div class="proj-thumb">App Flutter</div>
-          <h4 class="proj-title">App móvil — Login y mapa</h4>
-          <p class="small-meta">Flutter, autenticación por ID, integración con backend</p>
-          <div class="proj-badges">
-            <span class="badge">Flutter</span><span class="badge">Dart</span><span class="badge">Android</span>
-          </div>
-          <div style="margin-top:12px;display:flex;gap:8px">
-            <button class="nav-btn open-proj" data-id="app">Abrir</button>
-            <a class="nav-btn" href="https://github.com/TU_GITHUB/flutter-login-map" target="_blank">Código</a>
-          </div>
-        </article>
+  <!-- Proyecto Terminal -->
+  <article class="proj-card" data-proj="terminal">
+    <div class="proj-thumb" style="background-image: url('img/Captura\ de\ pantalla\ \(73\).png');">
+      <div class="proj-thumb-overlay">Terminal de Transporte</div>
+    </div>
+    <h4 class="proj-title">Portal de gestión y consulta de rutas</h4>
+    <p class="small-meta">Gestión de empresas, vehículos, rutas y horarios; frontend HTML/JS, backend PHP + MySQL</p>
+    <div class="proj-badges">
+      <span class="badge"><i class="fab fa-php"></i> PHP</span>
+      <span class="badge"><i class="fas fa-database"></i> MySQL</span>
+      <span class="badge"><i class="fab fa-html5"></i> HTML</span>
+      <span class="badge"><i class="fab fa-js-square"></i> JS</span>
+      <span class="badge"><i class="fab fa-css3-alt"></i> CSS</span>
+    </div>
+    <div style="margin-top:12px; display:flex; gap:8px;">
+      <button class="nav-btn open-proj" data-id="terminal"><i class="fas fa-eye"></i> Abrir</button>
+      <a class="nav-btn" href="https://github.com/Juanito2300/La-Terminal-de-Transportes" target="_blank"><i class="fab fa-github"></i> Código</a>
+    </div>
+  </article>
+   <article class="proj-card" data-proj="app">
+  <div class="proj-thumb" style="
+    background-image: url('img/WhatsApp\ Image\ 2025-12-19\ at\ 11.51.13.jpeg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 400px;
+  ">
+    <div class="proj-thumb-overlay">App Flutter</div>
+    </div>
+    <h4 class="proj-title">App móvil — Gestión completa de Full Autos</h4>
+    <p class="small-meta">Flutter, Firebase Auth, Firestore, Storage, Realtime DB, manejo de usuarios, tareas y aspirantes</p>
+    <div class="proj-badges">
+      <span class="badge"><i class="fab fa-google"></i> Flutter</span>
+      <span class="badge"><i class="fab fa-dart"></i> Dart</span>
+      <span class="badge"><i class="fas fa-fire"></i> Firebase</span>
+      <span class="badge"><i class="fab fa-android"></i> Android</span>
+      <span class="badge"><i class="fab fa-apple"></i> iOS</span>
+    </div>
+    <div style="margin-top:12px; display:flex; gap:8px;">
+      <button class="nav-btn open-proj" data-id="app"><i class="fas fa-eye"></i> Abrir</button>
+      <a class="nav-btn" href="https://github.com/Juanito2300/Aplicacion-movil" target="_blank"><i class="fab fa-github"></i> Código</a>
+    </div>
+  </article>
 
-        <article class="proj-card" data-proj="crud">
-          <div class="proj-thumb">Spring Boot</div>
-          <h4 class="proj-title">Platforma de gestión (CRUD)</h4>
-          <p class="small-meta">Spring Boot, MySQL, Thymeleaf, diseño responsivo</p>
-          <div class="proj-badges">
-            <span class="badge">Java</span><span class="badge">Spring Boot</span><span class="badge">MySQL</span>
-          </div>
-          <div style="margin-top:12px;display:flex;gap:8px">
-            <button class="nav-btn open-proj" data-id="crud">Abrir</button>
-            <a class="nav-btn" href="https://github.com/TU_GITHUB/spring-students" target="_blank">Código</a>
-          </div>
-        </article>
-      </div>
+  <article class="proj-card" data-proj="crud">
+  <div class="proj-thumb" style="
+    background-image: url('img/Captura de pantalla (74).png');
+    background-size: cover;           /* <- cambiar contain por cover */
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    aspect-ratio: 16/9;
+    position: relative; 
+    height: 300px;              /* <- necesario para el overlay */
+  ">
+  <div class="proj-thumb-overlay">App Flutter</div>
+  </div>
+  <h4 class="proj-title">Plataforma de gestión (CRUD)</h4>
+  <p class="small-meta">Python, Tkinter, SQLite, GUI de escritorio</p>
+  <div class="proj-badges">
+    <span class="badge"><i class="fab fa-python"></i> Python</span>
+    <span class="badge"><i class="fas fa-window-maximize"></i> Tkinter</span>
+    <span class="badge"><i class="fas fa-database"></i> SQLite</span>
+  </div>
+  <div style="margin-top:12px; display:flex; gap:8px;">
+    <button class="nav-btn open-proj" data-id="crud"><i class="fas fa-eye"></i> Abrir</button>
+    <a class="nav-btn" href="https://github.com/Juanito2300/Objetos" target="_blank"><i class="fab fa-github"></i> Código</a>
+  </div>
+</article>
+<!-- Proyecto Juego Pygame -->
+<article class="proj-card" data-proj="pygame">
+  <div class="proj-thumb" style="
+    background-image: url('img/Captura\ de\ pantalla\ \(75\).png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 400px;
+    position: relative;
+  ">
+    <div class="proj-thumb-overlay" style="
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 8px;
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      font-weight: bold;
+      text-align: center;
+    ">
+      Juego Pygame — Trayectoria y Árbol
+    </div>
+  </div>
+  <h4 class="proj-title">Simulación de Esfera y Obstáculo en Pygame</h4>
+  <p class="small-meta">
+    Juego en Python con Pygame. Control de esfera con colisiones en tiempo real contra árbol, rastreo de trayectoria y cronómetro activo.
+  </p>
+  <div class="proj-badges">
+    <span class="badge"><i class="fab fa-python"></i> Python</span>
+    <span class="badge"><i class="fas fa-gamepad"></i> Pygame</span>
+    <span class="badge"><i class="fas fa-clock"></i> Hilos / Cronómetro</span>
+  </div>
+  <div style="margin-top:12px; display:flex; gap:8px;">
+    <button class="nav-btn open-proj" data-id="pygame"><i class="fas fa-eye"></i> Abrir</button>
+    <a class="nav-btn" href="https://github.com/Juanito2300/Juego" target="_blank"><i class="fab fa-github"></i> Código</a>
+  </div>
+</article>
+</div>
     </section>
 
     <section id="skills" class="panel reveal">
@@ -1377,58 +1471,172 @@ loopType();
       title: 'Sistema de rastreo GPS en tiempo real',
       desc: 'Backend en Flask con WebSockets + frontend con Leaflet. Arquitectura REST + WS para enviar coordenadas y actualizar el mapa en tiempo real.',
       code:
-`# server.py (fragmento)
+`# main.py - fragmento de manejo de ubicaciones
 from flask import Flask, request, jsonify
-from flask_socketio import SocketIO, emit
-app = Flask(_name_)
-socketio = SocketIO(app)
+from datetime import datetime
 
-@socketio.on('update_location')
-def on_location(data):
-    # data: {id, lat, lng}
-    emit('location_update', data, broadcast=True)
+app = Flask(__name__)
 
-if _name=='main_':
-    socketio.run(app, host='0.0.0.0', port=5000)
+# Guardamos las ubicaciones y emparejamientos
+ubicaciones = {}       # {id_dispositivo: {lat, lng, timestamp}}
+emparejamientos = {}   # {id_dispositivo: id_pareja}
+
+@app.route('/ubicacion', methods=['POST'])
+def actualizar_ubicacion():
+    data = request.json
+    dispositivo_id = data.get("id")
+    lat = data.get("lat")
+    lng = data.get("lng")
+    if not dispositivo_id or lat is None or lng is None:
+        return jsonify({"error": "Datos incompletos"}), 400
+
+    ubicaciones[dispositivo_id] = {
+        "lat": lat,
+        "lng": lng,
+        "timestamp": datetime.now().isoformat()
+    }
+    return jsonify({"status": "ok"})
+
+@app.route('/ubicacion/<id_dispositivo>', methods=['GET'])
+def obtener_ubicaciones(id_dispositivo):
+    mi_ubicacion = ubicaciones.get(id_dispositivo)
+    pareja_id = emparejamientos.get(id_dispositivo)
+    pareja_ubicacion = ubicaciones.get(pareja_id) if pareja_id else None
+    return jsonify({"yo": mi_ubicacion, "pareja": pareja_ubicacion})
 `
     },
-    ocr: {
-      title: 'Lector de facturas con OCR',
-      desc: 'Pipeline para extraer texto de imágenes/PDF, normalizar y convertir montos escritos en palabras a números. Integración Flask + PaddleOCR o Tesseract.',
-      code:
-`# extract.py (fragmento)
-from paddleocr import PaddleOCR
-ocr = PaddleOCR(use_angle_cls=True, lang='es')
-result = ocr.ocr('factura.jpg', cls=True)
-# Procesar resultado y extraer montos y productos
-`
+  terminal: {
+  title: 'Portal de gestión y consulta de rutas',
+  desc: 'Sistema completo para la Terminal de Transporte: registro y gestión de empresas, vehículos, rutas y horarios. Backend en PHP + MySQL, frontend HTML/CSS/JS interactivo y dinámico.',
+  code: `# fragmento de ejemplo - conexión y consulta de rutas en PHP
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "terminal";
+
+// Crear conexión
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
+}
+
+// Consultar rutas
+$sql = "SELECT r.id, r.origen, r.destino, v.tipo as vehiculo, e.nombre as empresa 
+        FROM rutas r 
+        JOIN vehiculos v ON r.vehiculo_id = v.id
+        JOIN empresas e ON r.empresa_id = e.id";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        echo "Ruta: ".$row["origen"]." → ".$row["destino"]." | Vehículo: ".$row["vehiculo"]." | Empresa: ".$row["empresa"]."<br>";
+    }
+} else {
+    echo "No hay rutas registradas.";
+}
+
+$conn->close();
+?>`
     },
     app: {
-      title: 'App móvil — Login y mapa',
-      desc: 'App Flutter con pantalla de login por ID y pantalla con mapa que consume API REST para mostrar ubicaciones.',
-      code:
-`// login_screen.dart (fragmento)
+  title: 'App móvil — Gestión completa de Full Autos',
+  desc: 'App Flutter profesional con login Firebase, manejo de aspirantes, técnicos, servicios, tareas, almacenamiento de CVs y panel completo de usuario/admin.',
+  code: `// login_page.dart (fragmento)
 ElevatedButton(
-  onPressed: () async {
-    final id = idController.text;
-    final res = await http.post(Uri.parse('$API/auth'), body: {'id':id});
-    if(res.statusCode==200) Navigator.pushNamed(context, '/map');
+  onPressed: loading ? null : () async {
+    if (!_form.currentState!.validate()) return;
+    _form.currentState!.save();
+    setState(() => loading = true);
+
+    try {
+      final cred = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: pass,
+      );
+
+      // Obtener rol del usuario
+      final roleSnap = await FirebaseFirestore.instance.collection('users').doc(cred.user!.uid).get();
+      final role = roleSnap.data()?['role'] ?? 'unknown';
+
+      // Navegar a Home según rol
+      Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (_) => HomePage(role: roleFromString(role))),
+      );
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.message ?? 'Error al iniciar sesión')),
+      );
+    } finally {
+      setState(() => loading = false);
+    }
   },
-  child: Text('Entrar'),
+  child: Text(loading ? 'Procesando...' : 'Entrar'),
 )
 `
-    },
+},
+
+pygame: {
+  title: 'Simulación de Esfera y Obstáculo en Pygame',
+  desc: 'Juego completo en Python con Pygame. Control de esfera con colisiones contra un árbol, seguimiento de trayectoria, cronómetro en tiempo real y detección de colisiones precisa.',
+  code: `# fragmento de ejemplo - movimiento de la esfera y cronómetro en Pygame
+import pygame, threading, time
+
+ANCHO, ALTO = 800, 600
+VELOCIDAD = 5
+tiempo_transcurrido = 0
+cronometro_activo = False
+
+def hilo_cronometro():
+    global tiempo_transcurrido
+    while True:
+        if cronometro_activo:
+            time.sleep(1)
+            tiempo_transcurrido += 1
+
+pygame.init()
+ventana = pygame.display.set_mode((ANCHO, ALTO))
+esfera_x, esfera_y = 100, 500
+radio = 20
+
+cronometro_thread = threading.Thread(target=hilo_cronometro, daemon=True)
+cronometro_thread.start()
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_LEFT]: esfera_x -= VELOCIDAD
+    if keys[pygame.K_RIGHT]: esfera_x += VELOCIDAD
+    if keys[pygame.K_UP]: esfera_y -= VELOCIDAD
+    if keys[pygame.K_DOWN]: esfera_y += VELOCIDAD
+    # dibujar esfera, trayectoria y árbol...
+    pygame.display.flip()
+pygame.quit()`
+},
     crud: {
-      title: 'Plataforma CRUD — Spring Boot',
-      desc: 'Aplicación Java Spring Boot con MVC, repositorios JPA y Thymeleaf para gestión de estudiantes.',
-      code:
-`// StudentController.java (fragmento)
-@GetMapping("/students")
-public String listStudents(Model model) {
-    model.addAttribute("students", studentService.findAll());
-    return "students";
-}
-`
+  title: 'Plataforma CRUD — Python Tkinter',
+  desc: 'Aplicación de escritorio en Python con Tkinter y SQLite para gestión de estudiantes (insertar, modificar, eliminar, consultar).',
+  code: `# fragmento de main.py
+import sqlite3
+import tkinter as tk
+from tkinter import ttk, messagebox
+from tkcalendar import DateEntry
+
+# Función de conexión
+def conectar_db():
+    return sqlite3.connect("estudiantes.db")
+
+# Función para insertar estudiante
+def insertar():
+    conn = conectar_db()
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO estudiantes (Nombres, Apellidos, NoCelular, FechaNacimiento) VALUES (?, ?, ?, ?)",
+                   (entry_nombre.get(), entry_apellido.get(), entry_celular.get(), entry_fecha.get()))
+    conn.commit()
+    conn.close()`
     }
   };
 
@@ -1467,6 +1675,38 @@ document.addEventListener('click', e => {
   }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const now = new Date();
+  const hour = now.getHours();
+  
+  let timeGreeting = "";
+  
+  if(hour >= 5 && hour < 12){
+    timeGreeting = "Buenos días";
+  } else if(hour >= 12 && hour < 18){
+    timeGreeting = "Buenas tardes";
+  } else {
+    timeGreeting = "Buenas noches";
+  }
+
+  const message = `${timeGreeting}, mi nombre es Juan Esteban Echeverri. 
+Espero que disfrutes mi portafolio, donde encontrarás proyectos reales, soluciones innovadoras y experiencia en desarrollo backend, frontend, APIs y más.`;
+
+  const utterance = new SpeechSynthesisUtterance(message);
+  
+  const voices = window.speechSynthesis.getVoices();
+  const maleVoice = voices.find(voice => voice.lang.startsWith('es') && voice.name.toLowerCase().includes('male')) 
+                  || voices.find(voice => voice.lang.startsWith('es'));
+  
+  if(maleVoice) {
+    utterance.voice = maleVoice;
+  }
+
+  utterance.rate = 1; 
+  utterance.pitch = 1; 
+
+  window.speechSynthesis.speak(utterance);
+});
 
 function confirmarLlamada() {
   const nombre = "Juan Echeverri";
@@ -1477,13 +1717,9 @@ function confirmarLlamada() {
   );
 
   if (confirmar) {
-    window.location.href = `tel:+57${telefono}`;
+    window.location.href = `tel:${telefono}`;
   }
 }
-
-
-
-
 
   function openProj(id){
     const p = projects[id];
