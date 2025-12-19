@@ -1675,7 +1675,7 @@ document.addEventListener('click', e => {
   }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   const now = new Date();
   const hour = now.getHours();
   
@@ -1688,25 +1688,26 @@ document.addEventListener("DOMContentLoaded", () => {
     timeGreeting = "Buenas noches";
   }
 
-  const message = `${timeGreeting}, mi nombre es Juan Esteban Echeverri. 
+  function speakOnInteraction() {
+    const message = `${timeGreeting}, mi nombre es Juan Esteban Echeverri. 
 Espero que disfrutes mi portafolio, donde encontrarás proyectos reales, soluciones innovadoras y experiencia en desarrollo backend, frontend, APIs y más.`;
 
-  const utterance = new SpeechSynthesisUtterance(message);
-  const voices = window.speechSynthesis.getVoices();
-  const maleVoice = voices.find(voice => voice.lang.startsWith('es') && voice.name.toLowerCase().includes('male'))
-                    || voices.find(voice => voice.lang.startsWith('es'));
-  if(maleVoice) utterance.voice = maleVoice;
-  utterance.rate = 1;
-  utterance.pitch = 1;
+    const utterance = new SpeechSynthesisUtterance(message);
+    const voices = window.speechSynthesis.getVoices();
+    const maleVoice = voices.find(voice => voice.lang.startsWith('es') && voice.name.toLowerCase().includes('male'))
+                      || voices.find(voice => voice.lang.startsWith('es'));
+    if(maleVoice) utterance.voice = maleVoice;
 
-  // Función que reproduce la voz al interactuar
-  function speakOnInteraction() {
+    utterance.rate = 1;
+    utterance.pitch = 1;
+
     window.speechSynthesis.speak(utterance);
+
     document.removeEventListener('touchstart', speakOnInteraction);
     document.removeEventListener('click', speakOnInteraction);
   }
 
-  // Eventos para móviles y desktop: cualquier toque o click dispara el saludo
+  // Escuchar toque/click del usuario
   document.addEventListener('touchstart', speakOnInteraction, { once: true });
   document.addEventListener('click', speakOnInteraction, { once: true });
 });
