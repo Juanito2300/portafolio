@@ -377,6 +377,24 @@
     align-items: stretch;
   }
 
+
+   .github-chip{
+    font-size:11px;
+    padding:5px 9px;
+    gap:6px;
+
+    margin: 10px auto 0;
+    display: inline-flex;
+
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.12);
+  }
+
+  .github-chip i{
+    font-size:13px;
+  }
+
+
   nav{
     justify-content: center;
     width:100%;
@@ -476,6 +494,39 @@
     display: block;
   }
 }
+
+.github-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+
+  padding:6px 10px;
+  border-radius:999px;
+
+  font-size:12px;
+  font-weight:600;
+
+  color:var(--white);
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+
+  transition:all .2s ease;
+}
+
+.github-chip i{
+  font-size:14px;
+  opacity:.85;
+}
+
+.github-chip:hover{
+  background:rgba(255,255,255,0.08);
+  transform:translateY(-1px);
+}
+
+.github-chip:active{
+  transform:scale(.96);
+}
+
   </style>
 </head>
 <body>
@@ -615,12 +666,16 @@
             </div>
           </div>
 
-          <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:auto">
-            <div class="small-meta">GitHub: <a href="https://github.com/Juanito2300" target="_blank" style="color:var(--accent)">@Juanito2300</a></div>
+          
             <div style="display:flex;gap:8px">
               <button class="pill cta-pill" id="openProjects">Ver proyectos</button>
               <button class="pill cta-pill secondary" id="openContact">Contacto</button>
             </div>
+            <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:auto">
+          <a class="github-chip" href="https://github.com/Juanito2300" target="_blank" aria-label="GitHub profile">
+            <i class="fab fa-github"></i>
+            <span>@Juanito2300</span>
+          </a>
           </div>
         </div>
       </div>
