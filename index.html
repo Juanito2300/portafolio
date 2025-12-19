@@ -233,7 +233,6 @@
       0 14px 34px rgba(34,197,94,0.45);
   }
 
-  /* BOTÓN SECUNDARIO */
   #openContact{
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.18);
@@ -243,19 +242,69 @@
       0 10px 25px rgba(2,6,23,0.65);
   }
 
-  /* feedback táctil */
   .pill:active{
     transform: scale(0.96);
   }
 
+.cta-pill{
+  position: relative;
+  flex: 1;
+  padding: 11px 14px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .2px;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  cursor: pointer;
+  overflow: hidden;
 
+  transition:
+    transform .15s ease,
+    box-shadow .15s ease;
+}
 
+.cta-pill:not(.secondary){
+  background: linear-gradient(
+    135deg,
+    #34d399,
+    #22c55e
+  );
+  color: #022c22;
+  border: none;
 
+  box-shadow:
+    0 18px 40px rgba(34,197,94,0.55),
+    inset 0 1px 0 rgba(255,255,255,0.35);
+}
 
+.cta-pill:not(.secondary)::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.35),
+    transparent 60%
+  );
+  pointer-events:none;
+}
 
+.cta-pill.secondary{
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: var(--white);
 
+  box-shadow:
+    0 12px 30px rgba(2,6,23,0.65);
+}
+
+.cta-pill:active{
+  transform: scale(0.96);
+}
 
   #contact > div{
     flex-direction:column !important;
@@ -569,8 +618,8 @@
           <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:auto">
             <div class="small-meta">GitHub: <a href="https://github.com/Juanito2300" target="_blank" style="color:var(--accent)">@Juanito2300</a></div>
             <div style="display:flex;gap:8px">
-              <button class="pill" id="openProjects">Ver proyectos</button>
-              <button class="pill" id="openContact">Contacto</button>
+              <button class="pill cta-pill" id="openProjects">Ver proyectos</button>
+              <button class="pill cta-pill secondary" id="openContact">Contacto</button>
             </div>
           </div>
         </div>
