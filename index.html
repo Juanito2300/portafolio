@@ -573,6 +573,7 @@
 .hero-pills{
   overflow: hidden;
   padding-top: 20px;
+  padding-bottom: 15px;
 }
 
 .hero-pills .pill{
@@ -816,6 +817,37 @@
   font-weight: bold;
 }
 
+.hero-pills {
+  position: relative;
+}
+
+.hero-pills .pill {
+  position: relative;
+}
+
+/* Hover simulado */
+.hero-pills .pill.auto-hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.25);
+  background: linear-gradient(135deg, #6c7cff, #8fa3ff);
+}
+
+/* Mano 👆 */
+.hero-pills .hand {
+  position: absolute;
+  font-size: 20px;
+  pointer-events: none;
+  z-index: 20;
+  transition: left .35s ease, top .35s ease;
+  animation: tap 1s infinite;
+}
+
+@keyframes tap {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+  100% { transform: translateY(0); }
+}
+
   </style>
 </head>
 <body>
@@ -943,6 +975,7 @@
   data-desc="Consumo y creación de APIs REST, manejo de JSON, integración entre frontend y backend, envío y recepción de datos y conexión entre servicios.">
   <i class="fas fa-network-wired"></i> APIs REST
 </div>
+  <span class="hand">👆</span>
 </div>
         <div style="margin-top:16px" class="panel objective-desktop">
   <h4 style="margin:0 0 6px">Objetivo profesional</h4>
@@ -1723,6 +1756,61 @@ function confirmarLlamada() {
     window.location.href = `tel:${telefono}`;
   }
 }
+document.addEventListener('DOMContentLoaded', () => {
+  const pills = document.querySelectorAll('.hero-pills .pill');
+  const hand = document.querySelector('.hero-pills .hand');
+
+  let index = 0;
+  let interval = null;
+  let idleTimeout = null;
+
+  function moveHand() {
+    pills.forEach(p => p.classList.remove('auto-hover'));
+
+    const pill = pills[index];
+    pill.classList.add('auto-hover');
+
+    hand.style.left =
+      pill.offsetLeft + pill.offsetWidth / 2 - 10 + 'px';
+
+    hand.style.top =
+      pill.offsetTop + pill.offsetHeight / 2 - 4 + 'px';
+
+    index = (index + 1) % pills.length;
+  }
+
+  function start() {
+    if (interval) return;
+
+    hand.style.display = 'block';
+    moveHand();
+    interval = setInterval(moveHand, 1800);
+  }
+
+  function stop() {
+    clearInterval(interval);
+    interval = null;
+
+    pills.forEach(p => p.classList.remove('auto-hover'));
+    hand.style.display = 'none';
+
+    clearTimeout(idleTimeout);
+    idleTimeout = setTimeout(start, 2000);
+  }
+
+  document.addEventListener('mousedown', stop);
+  document.addEventListener('mousemove', stop);
+  document.addEventListener('scroll', stop);
+  document.addEventListener('touchstart', stop);
+  document.addEventListener('touchmove', stop);
+
+  pills.forEach(pill => {
+    pill.addEventListener('mouseenter', stop);
+    pill.addEventListener('touchstart', stop);
+  });
+
+  start();
+});
 
   function openProj(id){
     const p = projects[id];
