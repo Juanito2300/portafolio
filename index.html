@@ -890,6 +890,129 @@
     0 0 12px rgba(96,165,250,0.45);
 }
 
+.private-project{
+  grid-column: 1 / -1;
+  border: 1px solid rgba(99,102,241,.35);
+  background:
+    radial-gradient(circle at top left, rgba(99,102,241,.12), transparent 40%),
+    linear-gradient(135deg, #020617, #020617);
+  position: relative;
+  overflow: hidden;
+}
+
+.private-thumb{
+  height: 200px;
+  background: linear-gradient(135deg, #020617, #0f172a);
+  position: relative;
+  overflow: hidden;
+}
+
+.private-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    repeating-linear-gradient(
+      120deg,
+      rgba(99,102,241,.05) 0px,
+      rgba(99,102,241,.05) 1px,
+      transparent 1px,
+      transparent 12px
+    );
+}
+
+.private-header{
+  position:absolute;
+  top:18px;
+  left:20px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:600;
+  letter-spacing:.12em;
+  font-size:12px;
+  color:#a5b4fc;
+}
+
+.private-meta{
+  position:absolute;
+  bottom:18px;
+  left:20px;
+  display:flex;
+  gap:16px;
+  font-size:12px;
+  color:#c7d2fe;
+}
+
+.proj-title .subtitle{
+  display:block;
+  font-size:13px;
+  font-weight:400;
+  color:#94a3b8;
+  margin-top:4px;
+}
+
+.emphasis{
+  font-size:14px;
+  line-height:1.7;
+}
+
+.private-stats{
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(120px,1fr));
+  gap:12px;
+  margin:14px 0;
+}
+
+.private-stats div{
+  background: rgba(15,23,42,.6);
+  border:1px solid rgba(99,102,241,.25);
+  border-radius:10px;
+  padding:10px;
+  text-align:center;
+}
+
+.private-stats strong{
+  display:block;
+  font-size:18px;
+  color:#e0e7ff;
+}
+
+.private-stats span{
+  font-size:11px;
+  color:#94a3b8;
+}
+
+.private-actions{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.secure-flag{
+  font-size:12px;
+  padding:6px 10px;
+  border-radius:999px;
+  background: rgba(239,68,68,.15);
+  color:#fecaca;
+  border:1px solid rgba(239,68,68,.4);
+}
+
+/* Botón con aura */
+.glow{
+  position:relative;
+}
+
+.glow::after{
+  content:'';
+  position:absolute;
+  inset:-2px;
+  background: linear-gradient(90deg,#6366f1,#22d3ee,#6366f1);
+  filter: blur(12px);
+  opacity:.4;
+  z-index:-1;
+  border-radius:inherit;
+}
   </style>
 </head>
 <body>
@@ -1543,6 +1666,27 @@
   <div id="skill-level"></div>
 </div>
 
+<div class="modal-backdrop" id="privateVideoModal">
+  <div class="modal" style="max-width:1100px">
+    <button class="close" onclick="closePrivateVideo()">×</button>
+
+    <h3>Revisión técnica — Sistema Empresarial</h3>
+
+    <p class="small-meta">
+      Explicación completa de arquitectura, estructura real del proyecto,
+      rutas, módulos y flujo de datos. Código no público.
+    </p>
+
+    <video id="privateVideo"
+      controls
+      controlsList="nodownload"
+      preload="metadata"
+      style="width:100%;border-radius:14px;background:#000"
+    >
+      <source src="video/arquitectura-sistema.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
 
   <script>
   const $ = (s, el=document) => el.querySelector(s);
@@ -1898,6 +2042,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     index = (index + 1) % pills.length;
   }
+
+function openPrivateVideo(){
+  const modal = document.getElementById('privateVideoModal');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closePrivateVideo(){
+  const modal = document.getElementById('privateVideoModal');
+  const video = document.getElementById('privateVideo');
+  video.pause();
+  video.currentTime = 0;
+  modal.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') closePrivateVideo();
+});
+
+document.getElementById('privateVideoModal')
+  .addEventListener('click', e => {
+    if(e.target.id === 'privateVideoModal'){
+      closePrivateVideo();
+    }
+  });
 
   function start() {
     if (interval) return;
