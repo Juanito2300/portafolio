@@ -239,7 +239,7 @@ if(!input.value) return;
 
 messages.innerHTML += `<div class="msg user">${input.value}</div>`;
 
-const res = await fetch("/chat",{
+const res = await fetch(window.location.origin + "/chat",{
 method:"POST",
 headers:{"Content-Type":"application/json"},
 body:JSON.stringify({
