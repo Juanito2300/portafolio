@@ -37,7 +37,7 @@ load_portfolio()
 
 @app.get("/")
 async def home():
-    return FileResponse("index.html")
+    return FileResponse("chat.html")
 
 
 
