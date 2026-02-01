@@ -232,36 +232,143 @@ button:active{
 
 let session_id = null;
 
-async function send(){
-
+const messages = document.getElementById("messages");
 const input = document.getElementById("input");
-if(!input.value) return;
 
-messages.innerHTML += `<div class="msg user">${input.value}</div>`;
+/* =========================
+   DEBUG HELPERS
+========================= */
 
-const res = await fetch(window.location.origin + "/chat",{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({
-message:input.value,
-session_id
-})
-});
-
-const data = await res.json();
-
-session_id = data.session_id;
-
-messages.innerHTML += `<div class="msg bot">${data.response}</div>`;
-
-messages.scrollTop = messages.scrollHeight;
-
-input.value="";
+function log(...a){
+  console.log("🧠 DEBUG →", ...a);
 }
 
+function err(...a){
+  console.error("💥 ERROR →", ...a);
+}
+
+function addErrorToChat(text){
+  messages.innerHTML += `<div class="msg bot" style="background:#7f1d1d;color:#fff">${text}</div>`;
+  messages.scrollTop = messages.scrollHeight;
+}
+
+
+/* =========================
+   SEND (MISMA LÓGICA + LOGS)
+========================= */
+async function send(){
+
+try{
+
+  log("========== NUEVO MENSAJE ==========");
+
+  if(!input.value){
+    log("Input vacío → cancelado");
+    return;
+  }
+
+  const userText = input.value;
+
+  log("Mensaje usuario:", userText);
+  log("session_id actual:", session_id);
+
+  messages.innerHTML += `<div class="msg user">${userText}</div>`;
+
+
+  const url = window.location.origin + "/chat";
+
+  const payload = {
+    message:userText,
+    session_id
+  };
+
+  log("URL destino:", url);
+  log("Payload enviado:", payload);
+
+
+  /* ========= FETCH ========= */
+
+  const res = await fetch(url,{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify(payload)
+  });
+
+  log("Status HTTP:", res.status);
+  log("OK?:", res.ok);
+
+
+  /* ========= RESPUESTA CRUDA ========= */
+
+  const raw = await res.text();
+
+  log("Respuesta RAW:", raw);
+
+
+  if(!raw){
+    err("Respuesta VACÍA del backend");
+    addErrorToChat("⚠️ Backend devolvió vacío (posible crash, API key o 500)");
+    return;
+  }
+
+
+  if(!res.ok){
+    err("Servidor respondió error:", raw);
+    addErrorToChat("⚠️ Error servidor: " + raw);
+    return;
+  }
+
+
+  /* ========= JSON PARSE MANUAL ========= */
+
+  let data;
+
+  try{
+    data = JSON.parse(raw);
+  }catch(e){
+    err("JSON inválido:", raw);
+    addErrorToChat("⚠️ JSON inválido del backend");
+    return;
+  }
+
+  log("JSON parseado:", data);
+
+
+  /* ========= USAR RESPUESTA ========= */
+
+  session_id = data.session_id;
+
+  log("Nuevo session_id:", session_id);
+  log("Respuesta bot:", data.response);
+
+  messages.innerHTML += `<div class="msg bot">${data.response}</div>`;
+
+  messages.scrollTop = messages.scrollHeight;
+
+  input.value="";
+
+
+}catch(e){
+
+  err("Fallo TOTAL en send():", e);
+  addErrorToChat("⚠️ Error JS: " + e.message);
+
+}
+
+}
+
+
+/* ENTER */
 input.addEventListener("keydown",e=>{
   if(e.key==="Enter") send();
 });
+
+
+/* ========= INFO INICIAL ========= */
+
+log("Script cargado correctamente");
+log("Origin:", window.location.origin);
+log("Endpoint chat:", window.location.origin + "/chat");
 
 </script>
 

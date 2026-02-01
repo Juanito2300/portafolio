@@ -32,6 +32,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+load_portfolio()
+
 
 @app.get("/")
 async def home():
